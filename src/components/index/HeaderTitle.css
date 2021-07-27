@@ -1,0 +1,7 @@
+.HeaderTitle {
+    float: right;
+    margin: -150px 70px 0 0;
+    position: relative;
+    color: orange;
+    z-index: 1;
+}

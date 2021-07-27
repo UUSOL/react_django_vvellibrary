@@ -1,0 +1,26 @@
+.HeaderNavigation {
+    float: right;
+    margin-top: -330px;
+    position: relative;
+    z-index: 1;
+}
+.HeaderNavigation > input {
+    width: 220px;
+    height: 30px;
+    border: 1px solid #a2d9ff;
+    border-radius: 10px;
+    font-size: 17px;
+    padding: 7px;
+    margin-right: 5px;
+}
+.HeaderNavigation > a {
+    color: blue;
+    padding: 15px;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 20px;
+    
+}
+.HeaderNavigation > a:hover {
+    color: orange;  
+}

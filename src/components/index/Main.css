@@ -1,0 +1,142 @@
+main {
+    background-color: #f4f5f6;	
+    padding-top: 150px;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 150px 30px 20px 20px;
+    background-color: #f4f5f6;	
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    height: 350px;
+    width: 1250px;
+    background-color: white;
+}
+
+
+
+.book-covers {
+    display: flex;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.book-covers > div {
+    width: 220px;
+    height: 230px;
+    margin: 3px;
+    border: 2px solid white;
+}
+
+.book-covers > div > img {
+    width: 180px;
+    height: 220px;
+    box-shadow: 3px 3px 3px 3px lightgrey;
+    margin: 2px;
+    transition: all .3s ease-in-out;
+}
+
+.book-covers > div > img:hover{
+    cursor: pointer;
+    transform: scale(1.07);
+    transition: all .3s ease-in-out;
+}
+.book-covers::-webkit-scrollbar {
+      display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.book-covers {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.genre {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;	
+    position: relative;
+    z-index: 1;
+    margin: -61px 20px 0 20px;
+    font-size: 16px;	
+}
+.right-side .title {
+    text-align: right;
+}
+.right-side .comment {
+    flex-direction: row-reverse;
+}
+
+.title {
+    font-family: 'Caveat', cursive;
+    font-size: 50px; 
+}
+.comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: orange;
+}
+.comment a {
+    font-size: 20px;
+    color: orange;
+    text-decoration: underline dotted;
+    z-index: 1;
+}
+.comment a:hover {
+    color: blue;
+}
+
+.buttons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;	
+}
+
+button.right, button.left {
+    background-color: white;
+    color: orange;
+    font-size: 33px;
+    padding: 2px 9px;
+    border-radius: 50%;
+    border: 1px solid white;
+    z-index: 1;
+}
+button.right:hover, button.left:hover {
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+}
+
+
+
+
+
+.img-containter > img {
+    width: 250px;
+    height: 250px;	
+    z-index: 1;
+    margin-top: -50px;
+}
+.left-side .img-containter > img {
+    border-radius: 0 20% 0 35%;
+}
+.right-side .img-containter > img {
+    border-radius: 20% 0 35% 0;
+}

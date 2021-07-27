@@ -1,0 +1,20 @@
+.Header {
+    height: 200px;
+}
+
+.Header > svg > path {
+    fill: #f3f4f5;
+    fill-opacity: 1;
+}
+
+.Header > img {
+    width: 450px;
+    height:350px;        
+    opacity: 0.7;
+}
+
+.Header > .main-picture {
+    margin-top: -370px;
+    opacity: 0.7;
+    border-radius: 0 45% 0 0;
+}
