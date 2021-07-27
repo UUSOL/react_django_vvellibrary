@@ -14,8 +14,9 @@ from pathlib import Path
 import os
 import dj_database_url
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().root.root
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -39,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
-    'corsheaders',
+    'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
     'api',
@@ -91,11 +91,6 @@ DATABASES = {
     }
 }
 
-CORS_ORIGIN_WHITELIST = [
-    'http://127.0.0.1:8080', 'https://vvelonlinelibrary.herokuapp.com'
-]
-
-CORS_ORIGIN_ALLOW_ALL = True
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -151,4 +146,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Heroku: Update database configuration from $DATABASE_URL.
 
-DATABASES['default'] = dj_database_url.config(conn_max_age=500)
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
