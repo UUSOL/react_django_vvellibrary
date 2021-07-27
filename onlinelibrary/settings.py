@@ -15,7 +15,8 @@ import os
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().root.root
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -38,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'api',
@@ -89,6 +91,12 @@ DATABASES = {
     }
 }
 
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:8080', 'https://vvelonlinelibrary.herokuapp.com'
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -128,9 +136,11 @@ USE_TZ = True
 
 # The URL to use when referring to static files (where they will be served from)
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static'),
+    os.path.join(BASE_DIR, 'build/static')
 ]
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -141,6 +151,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Heroku: Update database configuration from $DATABASE_URL.
 
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
-
+DATABASES['default'] = dj_database_url.config(conn_max_age=500)

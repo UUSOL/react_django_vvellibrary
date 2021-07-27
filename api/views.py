@@ -3,7 +3,7 @@ from .models import Book, Author, Genre
 from django.contrib.auth.models import User
 
 from .serializers import BookSerializer, GenreSerializer, AuthorSerializer, UserSerializer
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseNotFound
 from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -23,6 +23,24 @@ from django.shortcuts import get_object_or_404
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 # Create your views here.
+
+# for making requests work on heroku
+from django.views import View
+from django.http import HttpResponse, HttpResponseNotFound
+import os
+
+
+# Add this CBV
+class Assets(View):
+
+    def get(self, _request, filename):
+        path = os.path.join(os.path.dirname(__file__), 'static', filename)
+
+        if os.path.isfile(path):
+            with open(path, 'rb') as file:
+                return HttpResponse(file.read(), content_type='application/javascript')
+        else:
+            return HttpResponseNotFound()
 
 
 def book_list(request):
