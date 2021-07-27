@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-#b5&u!redjpg6n
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['https://vvelonlinelibrary.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['vvelonlinelibrary.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
