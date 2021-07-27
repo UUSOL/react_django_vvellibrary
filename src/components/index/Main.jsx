@@ -50,7 +50,7 @@ function Main() {
                     {   
                         index % 2 !== 0 &&
                         <div className="img-containter">
-                            <img alt="people reading books" src={`./images/people/big${index}.jpg`} />
+                             <img src={`https://vvellibrary.s3.eu-central-1.amazonaws.com/images/${genre}.JPG`} />
                         </div>
                     }
                 </section>      
