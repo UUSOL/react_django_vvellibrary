@@ -1,6 +1,6 @@
 import './Main.css';
 import BookGalery from './BookGalery.jsx';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 
 function Main() {
@@ -9,21 +9,36 @@ function Main() {
                 id: 3,
                 cover_src: './bla',
             }],
-            novels: [ { 
+            novel: [ { 
                 id: 4,
                 cover_src: './bla',
             }],
-            detectives: [ { 
+            detective: [ { 
                 id: 5,
                 cover_src: './bla',
             }],
-            fairyTailes: [{ 
+            fairyTail: [{ 
                 id: 2,
                 cover_src: './bla',
             }],
     });
     
-    const genres = ['classic', 'novels', 'detectives', 'fairyTailes'];
+    useEffect(() => {
+        fetch('http://127.0.0.1:8000/api/books/', {
+            'method': 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            console.log(response)
+            return response.json();
+        })
+        .then(response => setBooks(response))
+        .catch(error => console.log(error))
+    }, []);
+
+    const genres = ['classic', 'novel', 'detective', 'fairyTail'];
     const galery = genres.map( (genre, index) => {
         return (     
                 <section key={genre} className={ (index % 2 == 0) ? 'left-side' : 'right-side'}>
