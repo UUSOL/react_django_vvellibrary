@@ -16,8 +16,8 @@ function Library(props) {
 
         if (!genres.length) {
             console.log('in fetch genres')
-            const stringToFetch = `http://127.0.0.1:8000/api/genres/`;
-            
+            //const stringToFetch = `http://127.0.0.1:8000/api/genres/`;
+            const stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/genres/';
             fetch(stringToFetch, {
                 'method': 'GET',
                 headers: {
@@ -33,8 +33,9 @@ function Library(props) {
             })
         }
            
-        fetch(`http://127.0.0.1:8000/api/genres/${genreToSearch}`, {
-                'method': 'GET',
+        //fetch(`http://127.0.0.1:8000/api/genres/${genreToSearch}`, {
+         fetch(`https://vvelonlinelibrary.herokuapp.com/${genreToSearch}`, {
+            'method': 'GET',
                 headers: {
                    'Content-Type': 'application/json'
                 }

@@ -10,7 +10,8 @@ function Category(props) {
     }
     useEffect(() => {
         if (!genres.length) {
-            const stringToFetch = 'http://127.0.0.1:8000/api/genres/';
+            const stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/api/genres/';
+            //const stringToFetch = 'http://127.0.0.1:8000/api/genres/';
             
             fetch(stringToFetch, {
                 'method': 'GET',

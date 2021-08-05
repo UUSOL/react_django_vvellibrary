@@ -13,8 +13,8 @@ function Main(props) {
     })
     
     useEffect(() => {
-        const stringToFetch = 'http://127.0.0.1:8000/api/books/'
-        //const stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/api/books/';
+        //const stringToFetch = 'http://127.0.0.1:8000/api/books/'
+        const stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/api/books/';
         fetch(stringToFetch, {
             'method': 'GET',
             headers: {

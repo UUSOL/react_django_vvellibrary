@@ -64,8 +64,8 @@ function Search(props) {
 
     useEffect(() => {
         if (!books.length) {
-            const stringToFetch = 'http://127.0.0.1:8000/api/books/search';
-            
+            //const stringToFetch = 'http://127.0.0.1:8000/api/books/search';
+            const stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/api/books/search';
             fetch(stringToFetch, {
                 'method': 'GET',
                 headers: {

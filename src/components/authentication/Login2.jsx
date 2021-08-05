@@ -98,7 +98,10 @@ function Login2() {
 
 
     const login = (body) => {
-        fetch('http://127.0.0.1:8000/auth/', {
+        //const stringToFetch = 'http://127.0.0.1:8000/auth/';
+        let stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/auth/';
+
+        fetch(stringToFetch, {
             'method': 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -115,7 +118,9 @@ function Login2() {
 
     const signup = (body) => {
         if (isEligableFromFrontEnd()) {
-            fetch('http://127.0.0.1:8000/api/users/', {
+
+            //fetch('http://127.0.0.1:8000/api/users/', {
+            fetch('https://vvelonlinelibrary.herokuapp.com/api/users/', {
                 'method': 'POST',
                 headers: {
                     'Content-Type': 'application/json'

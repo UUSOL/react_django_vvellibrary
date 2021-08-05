@@ -11,8 +11,9 @@ function UserContent() {
             history.push('/login2');
             return;
         }
-        const stringToFetch = `http://127.0.0.1:8000/api/choice/`;
-        fetch(stringToFetch, {
+       // const stringToFetch = `http://127.0.0.1:8000/api/choice/`;
+       const stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/api/choice/'; 
+       fetch(stringToFetch, {
             'method': 'GET',
             headers: {
                 'Content-Type': 'application/json'

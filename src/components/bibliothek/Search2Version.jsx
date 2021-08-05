@@ -23,8 +23,8 @@ function Search(props) {
     }
     useEffect(() => {
        
-            const stringToFetch = `http://127.0.0.1:8000/api/search/`;
-            
+            //const stringToFetch = `http://127.0.0.1:8000/api/search/`;
+            const stringToFetch = `'https://vvelonlinelibrary.herokuapp.com/api/search/`;
             fetch(stringToFetch, {
                 'method': 'POST',
                 headers: {

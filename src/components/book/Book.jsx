@@ -9,7 +9,8 @@ function Book(props) {
     useEffect(() => {
         //if (!bookId || bookId !== props.match.params.id) {
             
-            fetch(`http://127.0.0.1:8000/api/books/${bookId}`, {
+            //fetch(`http://127.0.0.1:8000/api/books/${bookId}`, {
+            fetch(`https://vvelonlinelibrary.herokuapp.com/api/books/${bookId}`, {
                 'method': 'GET',
                 headers: {
                     'Content-Type': 'application/json'
