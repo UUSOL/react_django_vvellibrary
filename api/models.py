@@ -14,7 +14,7 @@ class Author(models.Model):
 
 
 class Genre(models.Model):
-    name = models.CharField(max_length=50, help_text='Enter a genre of the book')
+    name = models.CharField(max_length=50, null=True, blank=True, help_text='Enter a genre of the book on russian')
 
     def __str__(self):
         """String for representing the Model Art object."""
@@ -29,7 +29,7 @@ class Book(models.Model):
                                        help_text='Enter a ranking for the book')
     url_to_download = models.URLField(help_text='Enter an url for the source of description', null=True)
     url_to_read = models.URLField(help_text='Enter an url for the source of description', null=True)
-    genre = models.ManyToManyField(Genre, help_text='Select or add a genre for the book')
+    genres = models.ManyToManyField(Genre, help_text='Select or add a genre for the book')
     authors = models.ManyToManyField(Author, help_text='Select or add an Author for the book')
     users = models.ManyToManyField(User, null=True, blank=True)
 
@@ -37,16 +37,17 @@ class Book(models.Model):
         """String for representing the Model Art object."""
         return self.title
 
-    def display_genre_id(self):
+    def display_genre_name(self):
         """Create a string for the Art. This is required to display art in Admin."""
-        return ', '.join(genre.name for genre in self.genre.all()[:3])
+        return ', '.join(genre.name for genre in self.genres.all()[:3])
 
-    display_genre_id.short_description = 'Genre'
+    display_genre_name.short_description = 'Genre'
 
-    '''
-    def display_authors_id(self):
+    def display_author_name(self):
         """Create a string for the Art. This is required to display art in Admin."""
         return ', '.join(author.first_name + ' ' + author.last_name for author in self.authors.all()[:3])
 
-    display_authors_id.short_description = 'Authors'
-    '''
+    display_author_name.short_description = 'Author'
+
+
+User._meta.get_field('email')._unique = True

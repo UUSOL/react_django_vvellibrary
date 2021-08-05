@@ -22,12 +22,17 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+
 # Create your views here.
 
 # for making requests work on heroku
 from django.views import View
 from django.http import HttpResponse, HttpResponseNotFound
 import os
+
+
+# for test purposes
+from django.core.serializers import json
 
 
 # Add this CBV
@@ -82,11 +87,29 @@ def book_detail(request, pk):
         return HttpResponse(status=204)
 
 
+
+
+
 @api_view(['GET', 'POST'])
 def book_list_api(request):
     if request.method == 'GET':
+       # books2 = Book.objects.values('title', 'authors__first_name', 'authors__last_name', 'genres__name').filter(ISBN=54)
         books = Book.objects.all()
-        serializer = BookSerializer(books, many=True)
+       # import json
+       # return JsonResponse(json.dumps(list(books2)), safe=False)
+
+
+       # from django.core import serializers
+       # data2 = serializers.serialize('json', books2)
+
+
+        best_books = books.filter(genres__name='классика').order_by('-ranking')[:10].union(
+            books.filter(genres__name='романы').order_by('-ranking')[:10],
+            books.filter(genres__name='детективы').order_by('-ranking')[:10],
+            books.filter(genres__name='сказки').order_by('-ranking')[:10], all=True)
+
+        serializer = BookSerializer(best_books, many=True)
+
         return Response(serializer.data)
 
     if request.method == 'POST':
@@ -95,6 +118,9 @@ def book_list_api(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -123,7 +149,7 @@ def book_detail_api(request, pk):
 
 class BookList(APIView):
     def get(self, request):
-        books = Book.objects.all()
+        books = Book.objects.all().prefetch_related('genres', 'authors')
         serializer = BookSerializer(books, many=True)
         return Response(serializer.data)
 
@@ -191,8 +217,11 @@ class BookDetailMixin(generics.GenericAPIView, mixins.RetrieveModelMixin, mixins
 class BookViewSet(viewsets.ViewSet):
 
     def list(self, request):
+        print('**************************************')
         books = Book.objects.all()
         serializer = BookSerializer(books, many=True)
+        print(books)
+        print(serializer)
         return Response(serializer.data)
 
     def create(self, request):
@@ -240,3 +269,59 @@ class BookViewSetModel(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+
+
+
+
+class GenreViewSet(viewsets.ModelViewSet):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+
+
+@api_view(['GET', 'POST'])
+def books_by_genre_list_api(request, genre):
+    if request.method == 'GET':
+        if genre == 100:
+            books = Book.objects.all()
+            serializer = BookSerializer(books, many=True)
+        else:
+            books = Book.objects.filter(genres__id=genre)
+            serializer = BookSerializer(books, many=True)
+
+        return Response(serializer.data)
+
+
+@api_view(['GET', 'POST'])
+def genre_list_api(request):
+    if request.method == 'GET':
+        genres = Genre.objects.all()
+        serializer = GenreSerializer(genres, many=True)
+        return Response(serializer.data)
+
+
+
+
+import json
+from django.db.models import Q
+
+@api_view(['GET', 'POST'])
+def search_api(request):
+    data = json.loads(request.body)
+    if request.method == 'POST':
+        if data['column'] == 'all':
+            books = Book.objects.filter(Q(title__contains=data['query']) | Q(authors__last_name__contains=data['query']))
+        elif data['column'] == 'books':
+            books = Book.objects.filter(title__contains=data['query'])
+        elif data['column'] == 'authors':
+            books = Book.objects.filter(authors__last_name__contains=data['query'])
+
+        serializer = BookSerializer(books, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET', 'POST'])
+def users_books_api(request):
+    if request.method == 'GET':
+        print(request)

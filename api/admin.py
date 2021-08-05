@@ -5,14 +5,15 @@ from .models import Book, Genre, Author
 # Register your models here.
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'ISBN', 'summary', 'ranking', 'url_to_download', 'url_to_read')
+    list_display = ('title', 'ISBN', 'ranking', 'url_to_download',
+                    'url_to_read', 'display_genre_name', 'display_author_name', 'summary')
     list_filter = ('title', 'ranking')
     fieldsets = (
         ('Title Info Section', {
             'fields': ('title', 'authors')
         }),
         ('Main Info Section', {
-            'fields': ('ISBN', 'summary', 'ranking')
+            'fields': ('ISBN', 'summary', 'ranking', 'genres')
         }),
         ('URLs', {
             'fields': ('url_to_read', 'url_to_download')

@@ -3,6 +3,7 @@ import React from 'react';
 
 
 function BookGalery(props) {
+   
     const bookCovers = props.bookArr.map((book) => {
             return (
                 <div className="book-info" key={book.id + props.genre}>

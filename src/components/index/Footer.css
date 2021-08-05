@@ -1,0 +1,21 @@
+.additional-info {     
+    float: right;
+    position: relative;
+    z-index: 1;
+    margin-top: -150px; 
+	margin-right: 20px;
+}
+
+.additional-info > a{  
+    text-decoration: none;
+	color: blue;
+	font-size: 24px;
+}
+
+.additional-info > a:hover {  
+	color: orange;
+}
+
+footer {
+	margin-top: -185px;
+}
