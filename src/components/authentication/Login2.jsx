@@ -11,7 +11,8 @@ function Login2() {
     const [email, setEmail] = useState('');
     const [error, setError] = useState([]);
     const [token, setToken] = useCookies(['vvelToken']);
-    
+    const [csrftoken, setCsrfToken] = useCookies(['csrftoken'])
+
     let history = useHistory();
 
     useEffect(() => {
@@ -110,7 +111,6 @@ function Login2() {
         })
         .then(response => response.json())
         .then(response => {
-            console.log(response)
             return (response.token) ? setToken('vvelToken', response.token) : null
         })
         .catch(error => console.log(error));
@@ -123,13 +123,14 @@ function Login2() {
             fetch('https://vvelonlinelibrary.herokuapp.com/api/users/', {
                 'method': 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken['csrftoken']
                 },
                 body: JSON.stringify({username, password, email})
             })
             .then(response => response.json())
             .then(response => {
-                console.log(response)
+               
                 if ( IsEligableFromBackend(response) ){
                     return (response.username === username) ? login() : null;
                 }
