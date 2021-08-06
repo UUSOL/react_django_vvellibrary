@@ -15,7 +15,8 @@ function HeaderNavigation() {
             <input type="text" placeholder="Введите автора или книгу" />
             <i className="fa fa-search"></i>  
             <NavLink to="/search2" activeClassName="SActivated">Найти книгу</NavLink>
-            <NavLink to="/genres" activeClassName="SActivated">Библиотека</NavLink>
+            <NavLink to="/genres/all" activeClassName="SActivated">Библиотека</NavLink>
+            <NavLink to="/choice" activeClassName="SActivated">Мои книги</NavLink>
             <NavLink onClick={(token['vvelToken']) ? test : null} 
                     to={ (token['vvelToken']) ? '/' : '/login2'} activeClassName="SActivated">
                     { (token['vvelToken']) ? 'Выйти' : 'Войти'}

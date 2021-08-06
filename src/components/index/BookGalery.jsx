@@ -5,9 +5,10 @@ import React from 'react';
 function BookGalery(props) {
    
     const bookCovers = props.bookArr.map((book) => {
+            
             return (
                 <div className="book-info" key={book.id + props.genre}>
-                    <img src={book.cover_src} />
+                    <img src="https://vvellibrary.s3.eu-central-1.amazonaws.com/images/header.jpg" />
                 </div>
             );
     });

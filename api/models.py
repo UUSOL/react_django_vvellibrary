@@ -29,6 +29,7 @@ class Book(models.Model):
                                        help_text='Enter a ranking for the book')
     url_to_download = models.URLField(help_text='Enter an url for the source of description', null=True)
     url_to_read = models.URLField(help_text='Enter an url for the source of description', null=True)
+    cover_src = models.URLField(help_text='Enter an url for the source of cover', null=True, blank=True)
     genres = models.ManyToManyField(Genre, help_text='Select or add a genre for the book')
     authors = models.ManyToManyField(Author, help_text='Select or add an Author for the book')
     users = models.ManyToManyField(User, null=True, blank=True)

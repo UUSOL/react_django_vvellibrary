@@ -1,0 +1,63 @@
+.Library {
+    margin-top: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    z-index: 1;
+}
+.Library nav {
+    margin: 20px 0;
+}
+.Library nav > span{
+    margin-right: 10px;
+    color: orange;
+}
+.Library nav > span:hover {
+   cursor: pointer;
+   color: skyblue;
+}
+.Library button {
+	width: 500px;
+	height: 55px;
+	margin: 5px;
+	background-color: orange;
+	font-family: Arial;
+	font-size: 20px;
+	border-radius: 7px;
+	border: 0;
+	transition-duration: 0.5s;
+}
+
+.Library button:hover {
+	transition-duration: 0.5s;
+	cursor: pointer;
+	box-shadow: 5px 5px 5px lightgrey;
+	background-color: darkorange;
+	color: white;
+}
+
+
+
+.book-covers {
+    display: flex;
+}
+
+.book-covers > div {
+    margin: 5px;
+    border: 2px solid white;
+}
+
+.book-covers > div > img {
+    width: 220px;
+    height: 280px;
+    box-shadow: 3px 3px 3px 3px lightgrey;
+    margin: 2px;
+    transition: all .3s ease-in-out;
+}
+
+.book-covers > div > img:hover{
+    cursor: pointer;
+    transform: scale(1.07);
+    transition: all .3s ease-in-out;
+}

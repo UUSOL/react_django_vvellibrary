@@ -1,0 +1,52 @@
+.Book {
+    display: flex;
+    justify-content: space-around;
+    font-family: Georgia;
+}
+.Book .book-cover {
+    width: 30%;
+}
+.Book .book-cover > img {
+    height: 700px;
+    width: 500px;
+    box-shadow: 10px 10px 10px 10px lightgrey;
+    border-radius: 0 15px 15px 0;
+}
+
+.Book .book-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+}
+.Book .book-info > h3 {
+    font-family: Roboto;
+    font-size: 34px;
+}
+
+
+/*buttons*/
+.Book .buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Book .buttons > button {
+    width: 500px;
+    height: 55px;
+    margin: 5px;
+    background-color: orange;
+    font-family: Arial;
+    font-size: 20px;
+    border-radius: 7px;
+    border: 0;
+    transition-duration: 0.5s;
+}
+.Book .buttons > button:hover {
+    transition-duration: 0.5s;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px lightgrey;
+    background-color: darkorange;
+    color: white;
+}

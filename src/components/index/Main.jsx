@@ -22,15 +22,17 @@ function Main(props) {
             }
         })
         .then(response => {
-        console.log(response)
+           
            return response.json();
         })
-        .then(response => setBooks({
+        .then(response => {
+            console.log(response)
+            setBooks({
             classic: response.splice(0, 10),
             novel: response.splice(0, 10),
             detective: response.splice(0, 10),
             fairyTail: response.splice(0, 10)
-        }))/*
+        })})/*
         .then(response => setBooks({
             classic: response.filter(book => book.genres.includes('классика')),
             novel: response.filter(book => book.genres.includes('романы')),
@@ -65,9 +67,9 @@ function Main(props) {
                                 <button data-name={genre} className="right" > &#62; </button>
                             </div>	
                         </div>
-                        {   books.length > 0 && 
-                            <BookGalery bookArr={books[genre]} />
-                        }       
+                        
+                        {books.length &&    <BookGalery bookArr={books[genre]} />
+    }      
                     </div>
                     {   
                         index % 2 !== 0 &&

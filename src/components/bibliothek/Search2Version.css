@@ -1,0 +1,78 @@
+.Search2Version {
+    margin-top: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    z-index: 1;
+}
+
+.Search2Version > input {
+    width: 300px;
+    height: 30px;
+    border: 1px solid #a2d9ff;
+    border-radius: 7px;
+    font-size: 24px;
+    padding: 7px;
+    margin-right: 5px;
+}
+
+.Search2Version > button {
+	width: 500px;
+	height: 55px;
+	margin: 5px;
+	background-color: orange;
+	font-family: Arial;
+	font-size: 20px;
+	border-radius: 7px;
+	border: 0;
+	transition-duration: 0.5s;
+}
+
+.Search2Version > button:hover {
+	transition-duration: 0.5s;
+	cursor: pointer;
+	box-shadow: 5px 5px 5px lightgrey;
+	background-color: darkorange;
+	color: white;
+}
+
+.Search2Version > .sort-buttons {
+    margin: 30px;
+}
+.Search2Version > .sort-buttons span  {
+    margin: 0 30px;
+    color:orange;
+    font-size: 24px;
+}
+
+.Search2Version > .sort-buttons span:hover  {
+    color:lightblue;
+    cursor: pointer;
+
+}
+
+
+.book-covers {
+    display: flex;
+}
+
+.book-covers > div {
+    margin: 5px;
+    border: 2px solid white;
+}
+
+.book-covers > div > img {
+    width: 220px;
+    height: 280px;
+    box-shadow: 3px 3px 3px 3px lightgrey;
+    margin: 2px;
+    transition: all .3s ease-in-out;
+}
+
+.book-covers > div > img:hover{
+    cursor: pointer;
+    transform: scale(1.07);
+    transition: all .3s ease-in-out;
+}

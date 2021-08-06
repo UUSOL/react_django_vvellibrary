@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import {useCookies} from 'react-cookie';
 import {useHistory} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Login.css';
 
 function Login2() {
@@ -130,7 +131,7 @@ function Login2() {
             })
             .then(response => response.json())
             .then(response => {
-               
+                console.log(response)
                 if ( IsEligableFromBackend(response) ){
                     return (response.username === username) ? login() : null;
                 }
@@ -159,11 +160,11 @@ function Login2() {
             </label>
 
             { history.location.pathname ==='/login2' &&
-                <div className='buttons'>
-                    <input type='button' onClick={login} value='войти'/>
-                    <input type='button' onClick={() => history.push('/')} value='отмена'/>
-                    <input type='button' onClick={() => history.push('/signup')} value='зарегистрироваться'/>
-                </div>
+                    <div className='buttons'>
+                        <button type='button' onClick={login}>войти</button>
+                        <button type='button' onClick={() => history.push('/')}>отмена</button>
+                        <NavLink className='sign-up-link' to='/signup'>зарегистрироваться</NavLink>                      
+                    </div>           
             }
 
             { history.location.pathname ==='/signup' &&
@@ -179,8 +180,8 @@ function Login2() {
                                     defaultValue={email} onBlur={e => setEmail(e.target.value)} />  
                             </label>
                             <div className='buttons'>
-                                <input type='button' onClick={signup} value='отправить'/>
-                                <input type='button' onClick={() => history.push('/login2')} value='отмена'/>
+                                <button type='button' onClick={signup}>отправить</button>
+                                <button type='button' onClick={() => history.push('/login2')}>отмена</button>
                             </div>
                         </React.Fragment>
             }

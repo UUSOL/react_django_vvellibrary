@@ -15,17 +15,49 @@
 .field {
     display: flex;
     width: 515px;
+  
     justify-content: space-between;
     margin: 5px;
 }
-.field > input, .buttons {
+.field > input {
     width: 250px;
     height: 27px;
     font-size: 24px;
 	font-family: 'Cormorant Garamond', serif;
+  
 }
 
-.buttons > input {
-    min-width: 200px;
-    font-size: 20px;
+.Login .buttons {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    margin-left: 150px;
+}
+.Login .buttons button {
+	min-width: 220px;
+	height: 55px;
+	margin: 10px;
+	background-color: orange;
+	font-family: Arial;
+	font-size: 20px;
+	border-radius: 7px;
+	border: 0;
+	transition-duration: 0.5s;
+}
+
+.Login .buttons button:hover {
+	transition-duration: 0.5s;
+	cursor: pointer;
+	box-shadow: 5px 5px 5px lightgrey;
+	background-color: darkorange;
+	color: white;
+}
+.Login .sign-up-link {
+    color: coral;
+   
+}
+.Login .sign-up-link:hover {
+    color: skyblue;
 }

@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import Genres from './Genres';
-
+import {NavLink} from 'react-router-dom';
+import './Library.css';
 
 function Library(props) {
     let [genreToSearch, setGenreToSearch] = useState(props.match.params.genres);
     const [genres, setGenres] = useState([]);
+    const [genreToDisplay, setGenreToDisplay] = useState('');
     const [books, setBooks] = useState([]);
     let [page, setPage] = useState(1);
     let [sortBy, setSortBy] = useState('');
@@ -16,8 +18,8 @@ function Library(props) {
 
         if (!genres.length) {
             console.log('in fetch genres')
-            //const stringToFetch = `http://127.0.0.1:8000/api/genres/`;
-            const stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/genres/';
+            const stringToFetch = `http://127.0.0.1:8000/api/genres/`;
+            //const stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/genres/';
             fetch(stringToFetch, {
                 'method': 'GET',
                 headers: {
@@ -29,6 +31,7 @@ function Library(props) {
                 return response.json();
             })
             .then(response => {
+                console.log(response)
                 setGenres(response)
             })
         }
@@ -46,6 +49,7 @@ function Library(props) {
                 return response.json();
             })
         .then(response => {
+            console.log(response)
             setBooks(response)
             setPage(1)
             //sort
@@ -58,6 +62,7 @@ function Library(props) {
         if (genre_id !== genreToSearch){
             history.push(`/genres/${genre_id}`)
             setGenreToSearch(genre_id)
+            setGenreToDisplay(genre_name)
         }
     }
 
@@ -95,28 +100,27 @@ function Library(props) {
 
 
     return (
-        <div>
-            {console.log('library render')}
-           
-           <h1>Hello</h1>
-            <nav>
-                <span data-sortby='ranking' onClick={sortBooks}>По популярности</span>
-                <span data-sortby='title' onClick={sortBooks}>По названию книги</span>
-            </nav>
-           {genres.length && <Genres genres={genres} cbDisplayGenre={cbDisplayGenre} />}
-           {books.length && books.slice(0, page*10).map(book => {
-               
-               return (
-                   <div key={book.id}>
-                        <hr />  
-                        <h2>Книга - {book.title}</h2>
-                        <p>Ranking: {book.ranking}</p>
-                        <hr />  
-                   </div>
-               )
-           })
-           }
-          <button onClick={next} disabled={books.length / (page * 10) < 1}>Показать еще</button>
+        <div className='Library'>
+            <div>
+            <h2>Все Книги из категории: {genreToDisplay}</h2>
+            <h4>Сортировать:</h4>
+                <nav>     
+                    <span data-sortby='ranking' onClick={sortBooks}>по популярности</span>
+                    <span data-sortby='title' onClick={sortBooks}>по названию книги</span>
+                </nav>
+                
+                {books.length > 0 && books.slice(0, page*10).map(book => {      
+                        return (
+                                <NavLink class="book-covers" to={`/books/${book.id}`}>
+                                    <img src={book.cover_src} />
+                                </NavLink>	
+                        )
+                    })
+                }
+                <button onClick={next} disabled={books.length / (page * 10) < 1}>Показать еще</button>
+            </div>
+            {genres.length > 0 && <Genres genres={genres} cbDisplayGenre={cbDisplayGenre} />}
+          
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
+import './Book.css';
 
 function Book(props) {
     let [book, setBook] = useState({});
@@ -31,11 +32,30 @@ function Book(props) {
     }, []);
 
     return (
-        <div>
-            <h2>{book.title}</h2>
-            <p>{book.id}</p>
-            <p>{book.ranking}</p>
-            <p>{book.summary}</p>
+        <div className='Book'>		
+				<div className="book-cover">
+					<img src={book.cover_src} />	
+				</div>
+				<div className="book-info">
+				
+					<h3>{book.title}</h3>
+					<p>{book.genre}</p> 
+					<div className="rating">
+						<span>Рейтинг: {book.ranking}</span>
+						<span className="fa fa-star"></span>
+					</div>	
+					<p>Жанр: {book.genre}</p>
+					<div>
+						<h2>Краткое описание:</h2>
+						<p>{book.summary}</p>
+					</div>
+
+					<div className="buttons">
+						<button>Читать онлайн</button>
+						<button>Скачать</button>					
+						<button>Добавить в мою библиотеку</button>
+					</div>
+				</div>		
         </div>
     );
 }
