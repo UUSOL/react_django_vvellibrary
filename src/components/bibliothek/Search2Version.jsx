@@ -12,7 +12,6 @@ function Search(props) {
     let [column, setColumn] = useState('all');
     const [csrftoken, setCsrfToken] = useCookies(['csrftoken'])
 
-
     const next = () => {
         setPage(++page)
     }
@@ -26,7 +25,7 @@ function Search(props) {
         setColumn(ev.target.dataset.field);
     }
     useEffect(() => {
-       
+
             //const stringToFetch = `http://127.0.0.1:8000/api/search/`;
             const stringToFetch = `https://vvelonlinelibrary.herokuapp.com/api/search/`;
             userInput && fetch(stringToFetch, {
