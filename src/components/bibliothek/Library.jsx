@@ -37,6 +37,7 @@ function Library(props) {
               //  console.log(response)
                 setGenres(response)
             })
+            .catch(error => console.log(error))
         }
            
         //fetch(`http://127.0.0.1:8000/api/genres/${genreToSearch}`, {

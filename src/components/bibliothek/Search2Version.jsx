@@ -40,12 +40,14 @@ function Search(props) {
                 })
             })
             .then(response => {
-                //console.log(response)
+                console.log(response)
                 return response.json();
             })
             .then(response => {
+                console.log(response)
                 setBooks(response)
             })
+            .catch(error => console.log(error))
         
     }, [column, userInput]);
 
