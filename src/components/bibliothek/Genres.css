@@ -1,11 +1,21 @@
 .Genres {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
-    position: relative;
+    
+    border-radius: 15px;
+    margin: 215px 30px 70px 0;
+    font-size: 28px;
     z-index: 1;
+  
 }
 
 .Genres span {
+    color: orange;
+    
+}
 
+
+.Genres span:hover {
+    color: skyblue;
+    cursor: pointer;
 }

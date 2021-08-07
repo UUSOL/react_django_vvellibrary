@@ -13,8 +13,8 @@ function Genres(props) {
     return (
         <div className='Genres'>
             
-        <h2>Категории:</h2>
-        {console.log('render genres')}
+        <h3>Категории</h3>
+        
         <span key={notExistingIndexInDb} data-id={notExistingIndexInDb} data-name='' onClick={displayGenre}>Все</span>
         {genres.length && genres.map(genre => <span key={genre.id} 
                                                 data-id={genre.id}

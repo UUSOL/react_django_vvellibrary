@@ -24,7 +24,7 @@ function Login2() {
 
     const isEligableFromFrontEnd = () => {
        
-        console.log('in frontend')
+        //console.log('in frontend')
         const errors = []
         if (!username || !password || !confirm || !email) {
             errors.push('Заполните, пожалуйста, все поля')
@@ -42,7 +42,7 @@ function Login2() {
         if (errors.length) {
             setError(errors)
         }
-        console.log(errors)
+        //console.log(errors)
         return errors.length === 0;
     }
 
@@ -52,7 +52,7 @@ function Login2() {
 
     /////////////////
     const IsEligableFromBackend = (response) => {
-        console.log('in backend')
+        //console.log('in backend')
         if (!Array.isArray(response.username) && 
             !Array.isArray(response.password) && 
             !Array.isArray(response.email)) {
@@ -106,7 +106,8 @@ function Login2() {
         fetch(stringToFetch, {
             'method': 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken['csrftoken']
             },
             body: JSON.stringify({username, password})
         })
@@ -131,7 +132,7 @@ function Login2() {
             })
             .then(response => response.json())
             .then(response => {
-                console.log(response)
+                //console.log(response)
                 if ( IsEligableFromBackend(response) ){
                     return (response.username === username) ? login() : null;
                 }
@@ -160,7 +161,7 @@ function Login2() {
             </label>
 
             { history.location.pathname ==='/login2' &&
-                    <div className='buttons'>
+                    <div className='login-buttons'>
                         <button type='button' onClick={login}>войти</button>
                         <button type='button' onClick={() => history.push('/')}>отмена</button>
                         <NavLink className='sign-up-link' to='/signup'>зарегистрироваться</NavLink>                      
@@ -179,7 +180,7 @@ function Login2() {
                                 <input data-field="email" type="email" 
                                     defaultValue={email} onBlur={e => setEmail(e.target.value)} />  
                             </label>
-                            <div className='buttons'>
+                            <div className='login-buttons'>
                                 <button type='button' onClick={signup}>отправить</button>
                                 <button type='button' onClick={() => history.push('/login2')}>отмена</button>
                             </div>

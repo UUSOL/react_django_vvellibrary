@@ -27,15 +27,16 @@
   
 }
 
-.Login .buttons {
+.Login .login-buttons {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin: 5px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 24px;
     margin-left: 150px;
 }
-.Login .buttons button {
+.Login .login-buttons button {
 	min-width: 220px;
 	height: 55px;
 	margin: 10px;
@@ -47,7 +48,7 @@
 	transition-duration: 0.5s;
 }
 
-.Login .buttons button:hover {
+.Login .login-buttons button:hover {
 	transition-duration: 0.5s;
 	cursor: pointer;
 	box-shadow: 5px 5px 5px lightgrey;

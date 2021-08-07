@@ -2,13 +2,17 @@ import React, {useState, useEffect} from 'react';
 import Category from './Category';
 import './Search2Version.css';
 import {NavLink} from 'react-router-dom';
+import {useCookies} from 'react-cookie';
+
 
 function Search(props) {
     const [books, setBooks] = useState([])
     let [page, setPage] = useState(1);
     let [userInput, setUserInput] = useState('');
     let [column, setColumn] = useState('all');
-    
+    const [csrftoken, setCsrfToken] = useCookies(['csrftoken'])
+
+
     const next = () => {
         setPage(++page)
     }
@@ -24,11 +28,12 @@ function Search(props) {
     useEffect(() => {
        
             //const stringToFetch = `http://127.0.0.1:8000/api/search/`;
-            const stringToFetch = `'https://vvelonlinelibrary.herokuapp.com/api/search/`;
-            fetch(stringToFetch, {
+            const stringToFetch = `https://vvelonlinelibrary.herokuapp.com/api/search/`;
+            userInput && fetch(stringToFetch, {
                 'method': 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken['csrftoken']
                 },
                 body: JSON.stringify({
                     'query': userInput,
@@ -36,7 +41,7 @@ function Search(props) {
                 })
             })
             .then(response => {
-                console.log(response)
+                //console.log(response)
                 return response.json();
             })
             .then(response => {
@@ -56,15 +61,16 @@ function Search(props) {
                 <span onClick={changeColumnToSearch} data-field='books'>книги</span>
                 <span onClick={changeColumnToSearch} data-field='authors'>авторы</span>
             </nav>
-
-            { books.length > 0 && books.slice(0, page * 10).map(book => {
-                    return (
-                        <NavLink class="book-covers" to={`/books/${book.id}`}>
-                            <img src={book.cover_src} />
-                        </NavLink>	
-                    );
-                })
-            }
+            <div className="book-covers">
+                { books.length > 0 && books.slice(0, page * 10).map(book => {
+                        return (
+                            <NavLink key={book.id} to={`/books/${book.id}`}>
+                                <img src={book.cover_src} />
+                            </NavLink>	
+                        );
+                    })
+                }
+            </div>
     
             <button onClick={next} disabled={books.length / (page * 10) < 1}>Показать еще</button>
 

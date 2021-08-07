@@ -9,10 +9,10 @@
 }
 
 .Search2Version > input {
-    width: 300px;
-    height: 30px;
+    width: 470px;
+    height: 45px;
     border: 1px solid #a2d9ff;
-    border-radius: 7px;
+    border-radius: 10px;
     font-size: 24px;
     padding: 7px;
     margin-right: 5px;
@@ -54,24 +54,29 @@
 }
 
 
-.book-covers {
+.Search2Version .book-covers {
     display: flex;
+    flex-wrap: wrap;
+    margin: 50px;
 }
 
-.book-covers > div {
+.Search2Version .book-covers > a {
+    padding: 10px;
     margin: 5px;
     border: 2px solid white;
+    width: 250px;
+    height: 300px;
 }
 
-.book-covers > div > img {
+.Search2Version .book-covers > a > img {
     width: 220px;
     height: 280px;
-    box-shadow: 3px 3px 3px 3px lightgrey;
-    margin: 2px;
+    box-shadow: 5px 5px 5px 5px lightgrey;
+    margin: 20px;
     transition: all .3s ease-in-out;
 }
 
-.book-covers > div > img:hover{
+.Search2Version .book-covers > a > img:hover{
     cursor: pointer;
     transform: scale(1.07);
     transition: all .3s ease-in-out;

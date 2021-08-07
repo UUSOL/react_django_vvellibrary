@@ -27,16 +27,17 @@ section {
     display: flex;
     overflow-x: hidden;
     position: relative;
+    z-index: 1;
 }
 
-.book-covers > div {
+.book-covers > a {
     width: 220px;
     height: 230px;
     margin: 3px;
     border: 2px solid white;
 }
 
-.book-covers > div > img {
+.book-covers > a > img {
     width: 180px;
     height: 220px;
     box-shadow: 3px 3px 3px 3px lightgrey;
@@ -44,7 +45,7 @@ section {
     transition: all .3s ease-in-out;
 }
 
-.book-covers > div > img:hover{
+.book-covers > a > img:hover{
     cursor: pointer;
     transform: scale(1.07);
     transition: all .3s ease-in-out;
@@ -105,8 +106,10 @@ section {
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;	
+    position: absolute;
+    padding: 50px 24px 0 0px;
 }
 
 button.right, button.left {

@@ -1,10 +1,13 @@
 .Library {
     margin-top: 200px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
     position: relative;
     z-index: 1;
+}
+.Library .title-section {
+    margin-left: 80px;
 }
 .Library nav {
     margin: 20px 0;
@@ -21,6 +24,7 @@
 	width: 500px;
 	height: 55px;
 	margin: 5px;
+    margin-left: 80px; 
 	background-color: orange;
 	font-family: Arial;
 	font-size: 20px;
@@ -38,25 +42,29 @@
 }
 
 
-
-.book-covers {
+.Library .book-covers {
     display: flex;
+    flex-wrap: wrap;
+    margin: 50px;
 }
 
-.book-covers > div {
+.Library .book-covers > a {
+    padding: 10px;
     margin: 5px;
     border: 2px solid white;
+    width: 250px;
+    height: 300px;
 }
 
-.book-covers > div > img {
+.Library .book-covers > a > img {
     width: 220px;
     height: 280px;
-    box-shadow: 3px 3px 3px 3px lightgrey;
-    margin: 2px;
+    box-shadow: 5px 5px 5px 5px lightgrey;
+    margin: 20px;
     transition: all .3s ease-in-out;
 }
 
-.book-covers > div > img:hover{
+.Library .book-covers > a > img:hover{
     cursor: pointer;
     transform: scale(1.07);
     transition: all .3s ease-in-out;

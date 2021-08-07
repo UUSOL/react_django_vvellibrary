@@ -44,6 +44,7 @@ function Book(props) {
 						<span>Рейтинг: {book.ranking}</span>
 						<span className="fa fa-star"></span>
 					</div>	
+                    <p>Автор: {book.authors}</p>
 					<p>Жанр: {book.genre}</p>
 					<div>
 						<h2>Краткое описание:</h2>
@@ -52,7 +53,7 @@ function Book(props) {
 
 					<div className="buttons">
 						<button>Читать онлайн</button>
-						<button>Скачать</button>					
+						<a href={book.url_to_download} target='_blank' download>Скачать</a>				
 						<button>Добавить в мою библиотеку</button>
 					</div>
 				</div>		
