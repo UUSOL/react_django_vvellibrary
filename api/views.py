@@ -34,6 +34,11 @@ import os
 # for test purposes
 from django.core.serializers import json
 
+# for search page
+import json
+from django.db.models import Q
+# -------------
+
 
 # Add this CBV
 class Assets(View):
@@ -303,8 +308,9 @@ def genre_list_api(request):
 
 
 
-import json
-from django.db.models import Q
+
+from django.views.decorators.csrf import csrf_exempt
+
 
 @api_view(['GET', 'POST'])
 def search_api(request):

@@ -30,7 +30,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-#b5&u!redjpg6n
 DEBUG = True
 # DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['vvelonlinelibrary.herokuapp.com', '127.0.0.1', 'vvelonlinelibrary.herokuapp.com/search2', 'vvelonlinelibrary.herokuapp.com/api/search/']
+#ALLOWED_HOSTS = ['vvelonlinelibrary.herokuapp.com', '127.0.0.1']
+
+
 
 # Application definition
 
@@ -61,12 +63,15 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://vvelonlinelibrary.herokuapp.com",
-    "https://vvelonlinelibrary.herokuapp.com/search2",
-    "https://vvelonlinelibrary.herokuapp.com/api/search",
     "http://localhost:8080",
     "http://127.0.0.1:8000",
     "http://localhost:3000",
 ]
+
+# for test
+ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_ALLOW_ALL = True
+# ----------------------
 
 ROOT_URLCONF = 'onlinelibrary.urls'
 

@@ -26,12 +26,13 @@ function Search(props) {
     }
     useEffect(() => {
 
-            //const stringToFetch = `http://127.0.0.1:8000/api/search/`;
-            const stringToFetch = `https://vvelonlinelibrary.herokuapp.com/api/search/`;
+            const stringToFetch = `http://127.0.0.1:8000/api/search/`;
+            //const stringToFetch = `https://vvelonlinelibrary.herokuapp.com/api/search/`;
             userInput && fetch(stringToFetch, {
                 'method': 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken['csrftoken'] || ''
                 },
                 body: JSON.stringify({
                     'query': userInput,
