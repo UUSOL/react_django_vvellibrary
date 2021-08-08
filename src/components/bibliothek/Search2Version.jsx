@@ -31,8 +31,7 @@ function Search(props) {
             userInput && fetch(stringToFetch, {
                 'method': 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrftoken['csrftoken']     
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     'query': userInput,
