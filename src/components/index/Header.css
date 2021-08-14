@@ -1,20 +1,36 @@
 .Header {
     height: 200px;
+    background-color: #f3f4f5;
 }
-
+.Header > svg {
+    position: absolute;
+    background-color: white;
+}
 .Header > svg > path {
     fill: #f3f4f5;
     fill-opacity: 1;
 }
 
-.Header > img {
+.Header img {
     width: 450px;
-    height:350px;        
-    opacity: 0.7;
+    height: 350px;        
+    opacity: 0.7; 
 }
 
-.Header > .main-picture {
-    margin-top: -370px;
+.Header .main-picture { 
     opacity: 0.7;
     border-radius: 0 45% 15% 0;
+}
+
+.Header .image-title-container {
+    display: flex;
+    width: 100%;
+}
+
+
+@media only screen and (max-width: 620px){
+    .Header > .main-picture {
+        width: 430px;
+        height: 330px;    
+    }
 }

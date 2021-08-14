@@ -263,13 +263,20 @@ class BookViewSetGeneric(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
-
+'''
 class BookViewSetModel(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = (TokenAuthentication, )
-
+'''
+'''
+class BookViewSetModel(viewsets.ModelViewSet):
+    queryset = Book.objects.filter(users__id)
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticated]
+    authentication_classes = (TokenAuthentication, )
+'''
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -331,3 +338,6 @@ def search_api(request):
 def users_books_api(request):
     if request.method == 'GET':
         print(request)
+        books = Book.objects.all()
+        serializer = BookSerializer(books, many=True)
+        return Response(serializer.data)

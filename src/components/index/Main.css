@@ -1,8 +1,10 @@
 main {
-    background-color: #f4f5f6;	
-    padding-top: 150px;
+    background-color: #f4f5f6;
+    margin-top: 300px;
 }
-
+body {
+    background-color: #f4f5f6;
+}
 section {
     display: flex;
     flex-direction: row;
@@ -16,12 +18,10 @@ section {
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    height: 350px;
+    height: 330px;
     width: 1250px;
     background-color: white;
 }
-
-
 
 .book-covers {
     display: flex;
@@ -50,14 +50,16 @@ section {
     transform: scale(1.07);
     transition: all .3s ease-in-out;
 }
+
 .book-covers::-webkit-scrollbar {
       display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
+
 .book-covers {
     -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+      scrollbar-width: none; /* Firefox */
 }
 
 .book-info {
@@ -127,10 +129,6 @@ button.right:hover, button.left:hover {
     cursor: pointer;
 }
 
-
-
-
-
 .img-containter > img {
     width: 250px;
     height: 250px;	
@@ -142,4 +140,94 @@ button.right:hover, button.left:hover {
 }
 .right-side .img-containter > img {
     border-radius: 20% 0 35% 0;
+}
+
+
+@media only screen and (max-width: 1550px){
+    .container {
+        width: 77vw;
+    }
+}
+@media only screen and (max-width: 1330px){
+    .container {
+        width: 72vw;
+    }
+
+}
+@media only screen and (max-width: 1100px){
+    .container {
+        width: 67vw;
+    }
+}
+@media only screen and (max-width: 1000px){
+    main {
+        margin-top: 380px;
+    }
+}
+
+@media only screen and (max-width: 920px){
+    .container {
+        width: 62vw;
+        height: auto;
+    }
+    .left-side .comment, .right-side .comment {
+        display:flex;
+        flex-direction: column;
+        padding: 5px;
+    }
+    .comment a {
+        margin-top: 40px;
+    }
+     .left-side .title, .right-side .title {
+       font-size: 42px;
+    }
+    main {
+        margin-top: 515px;
+    }
+  
+}
+
+
+
+@media only screen and (max-width: 820px){
+    .container {
+        width: 57vw;
+    }
+ 
+}
+@media only screen and (max-width: 720px){
+    .container {
+        width: 50vw;
+    }
+    .container .buttons {
+        margin-top: 55px; 
+    }
+
+ 
+}
+@media only screen and (max-width: 620px){
+
+    section {
+        width: 93%;
+        margin-left: 5px;
+          
+    }
+    .container {
+        width: 42vw;
+    }
+    .container .buttons {
+        margin-top: 50px; 
+    }
+   
+
+}
+@media only screen and (max-width: 570px){
+ 
+    .img-containter > img {
+        width: 220px;
+        height: 220px;
+    }
+    main {
+        margin-top: 599px;
+    }
 }

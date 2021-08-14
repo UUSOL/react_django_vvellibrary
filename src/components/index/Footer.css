@@ -1,9 +1,9 @@
-.additional-info {     
-    float: right;
+.additional-info {
     position: relative;
-    z-index: 1;
-    margin-top: -150px; 
-	margin-right: 20px;
+    z-index: 1;     
+    float: right;
+	padding: 0 30px 70px 0;
+    
 }
 
 .additional-info > a{  
@@ -17,5 +17,19 @@
 }
 
 footer {
-	margin-top: -185px;
+    position: relative;
+    height: 200px;
+    background-color: #f3f4f5;
+}
+
+footer > svg {
+    position: absolute;
+    margin-top: -185px;
+    background-color: white;
+}
+
+@media only screen and (max-width: 850px){
+    footer > svg {
+        margin-top: -110px;
+    }
 }

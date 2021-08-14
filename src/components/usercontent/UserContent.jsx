@@ -11,8 +11,8 @@ function UserContent() {
             history.push('/login2');
             return;
         }
-       // const stringToFetch = `http://127.0.0.1:8000/api/choice/`;
-       const stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/api/choice/'; 
+       const stringToFetch = `http://127.0.0.1:8000/api/choice/`;
+       //const stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/api/choice/'; 
        fetch(stringToFetch, {
             'method': 'GET',
             headers: {
@@ -21,8 +21,11 @@ function UserContent() {
             'Authorization': `Token ${token['vvelToken']}`
         })
         .then(response => {
-            //console.log(response)
+            console.log(response)
             return response.json();
+        })
+        .then(response => {
+            console.log(response)
         })
         console.log(token['vvelToken']);
     }, []);

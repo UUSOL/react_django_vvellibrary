@@ -1,21 +1,68 @@
 .Genres {
-    display: flex;
-    flex-direction: column;
-    
-    border-radius: 15px;
     margin: 215px 30px 70px 0;
     font-size: 28px;
     z-index: 1;
-  
+    right:10px;
 }
 
+.Genres div {
+    display: flex;
+    flex-direction: column;
+}
 .Genres span {
-    color: orange;
-    
+    color: orange;   
 }
-
 
 .Genres span:hover {
     color: skyblue;
     cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 920px){
+    .Genres {
+        display: inline-block;
+        border-radius: 15px;
+        position: absolute;
+        margin-top: 215px;
+        padding: 0;
+        top:10px;
+        right:0px;
+        background-color: #f4f5f6;
+        color: darkorange;
+    } 
+    .Genres:hover {
+        border-radius: 15px 15px 0 0;
+    }
+    .Genres h3 {
+        padding: 0px 21px;
+        font-size: 28px;
+    }
+    .Genres div {
+        background: #f4f5f6;
+        position: relative;
+        display: none;
+        position: absolute;
+        z-index: 1;
+        border-radius: 0 0 15px 15px;
+    } 
+    .Genres span {
+        padding: 10px 18px;
+        font-size: 28px;
+    }
+    .Genres:hover div {
+        display: flex;
+        flex-direction: column;
+    }
+    .Genres:hover span {      
+        display: block;
+    }
 }

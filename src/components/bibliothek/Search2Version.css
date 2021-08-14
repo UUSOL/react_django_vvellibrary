@@ -1,11 +1,14 @@
 .Search2Version {
     margin-top: 240px;
+    margin-bottom: 50px;
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     position: relative;
     z-index: 1;
+    background-color: white;
 }
 
 .Search2Version > input {
@@ -50,12 +53,12 @@
 .Search2Version > .sort-buttons span:hover  {
     color:lightblue;
     cursor: pointer;
-
 }
 
 
 .Search2Version .book-covers {
     display: flex;
+    justify-content: flex-start;
     flex-wrap: wrap;
     margin: 50px;
 }
@@ -65,7 +68,7 @@
     margin: 5px;
     border: 2px solid white;
     width: 250px;
-    height: 300px;
+    height: 310px;
 }
 
 .Search2Version .book-covers > a > img {
@@ -80,4 +83,41 @@
     cursor: pointer;
     transform: scale(1.07);
     transition: all .3s ease-in-out;
+}
+
+@media only screen and (max-width: 1000px){
+    .Search2Version {
+        margin-top: 400px;
+    }
+    .Search2Version .book-covers{
+        margin: 0;
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 920px){
+    .Search2Version {
+        margin: 450px 0 50px 0;
+    }
+
+ 
+}
+
+@media only screen and (max-width: 600px){
+    .Search2Version {
+        margin-top: 550px;
+    }
+    .Search2Version .book-covers{
+        width: 100%;
+        justify-content: center;
+    }
+
+    .Search2Version > input {
+        width: 90%;
+    }
+    .Search2Version > button {
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 700px){
+    
 }

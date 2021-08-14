@@ -11,8 +11,12 @@ function Header() {
                 </path>
             </svg>
             <HeaderNavigation />
+
+    
             <img className="main-picture" alt="header-picture" src="https://vvellibrary.s3.eu-central-1.amazonaws.com/images/header.jpg" />
             <HeaderTitle />
+        
+        
         </header>
     );
   }

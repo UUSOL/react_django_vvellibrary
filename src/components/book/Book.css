@@ -18,17 +18,14 @@
 .Book .book-info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    float: right;
     margin: 0 24px;
-   
 }
+
 .Book .book-info > h3 {
    margin: 0;
    font-family: Roboto;
    font-size: 40px;
 }
-
 
 /*buttons*/
 .Book .buttons {
@@ -39,6 +36,7 @@
     position: relative;
     z-index: 1;
 }
+
 .Book .buttons > button, .Book .buttons > a {
     width: 500px;
     height: 55px;

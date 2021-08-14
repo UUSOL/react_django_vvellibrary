@@ -1,7 +1,48 @@
 .HeaderTitle {
     float: right;
-    margin: -150px 70px 0 0;
-    position: relative;
     color: orange;
+    margin: -170px 70px 0 0;
+    position: relative;
     z-index: 1;
+   
+}
+@media only screen and (max-width: 1450px){
+    .HeaderTitle {
+        width: 750px;
+        margin-left: 100px;
+        margin-right: 30px;
+        float: right;
+    }
+}
+
+@media only screen and (max-width: 1288px){
+    .HeaderTitle {
+        margin-top: -216px;
+        width: 70%;
+        text-align: right;
+    }
+}
+
+@media only screen and (max-width: 1170px){
+    .HeaderTitle {
+        width: 55%;
+    }
+}
+
+
+@media only screen and (max-width: 1000px){
+    .HeaderTitle {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+      
+      }
+}
+
+@media only screen and (max-width: 920px){
+    .HeaderTitle {
+        margin: 0 30px;
+        width: 90%;
+        text-align: center;
+    }
 }
