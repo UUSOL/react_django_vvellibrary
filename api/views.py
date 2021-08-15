@@ -336,29 +336,9 @@ def search_api(request):
         return Response(serializer.data)
 
 
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import permission_classes
-from rest_framework.authtoken.views import ObtainAuthToken
-@api_view(['GET', 'POST'])
-@authentication_classes((TokenAuthentication,))
 
-class CustomAuthToken(ObtainAuthToken):
-
-    def get(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data,
-                                           context={'request': request})
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        token, created = Token.objects.get_or_create(user=user)
-        return Response({
-            'token': token.key,
-            'user_id': user.pk,
-            'email': user.email
-        })
-"""
 def users_books_api(request):
     if request.method == 'GET':
         books = User.objects.all(id=request.user.id)
         serializer = BookSerializer(books, many=True)
         return Response(serializer.data)
-"""
