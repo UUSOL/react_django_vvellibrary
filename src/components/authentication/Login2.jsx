@@ -162,9 +162,9 @@ function Login2() {
 
             { history.location.pathname ==='/login2' &&
                     <div className='login-buttons'>
-                        <button type='button' onClick={login}>войти</button>
-                        <button type='button' onClick={() => history.push('/')}>отмена</button>
-                        <NavLink className='sign-up-link' to='/signup'>зарегистрироваться</NavLink>                      
+                        <button type='button' onClick={login}>Войти</button>
+                        <button type='button' onClick={() => history.push('/')}>Отмена</button>
+                        <NavLink className='sign-up-link' to='/signup'>Зарегистрироваться</NavLink>                      
                     </div>           
             }
 
@@ -181,8 +181,8 @@ function Login2() {
                                     defaultValue={email} onBlur={e => setEmail(e.target.value)} />  
                             </label>
                             <div className='login-buttons'>
-                                <button type='button' onClick={signup}>отправить</button>
-                                <button type='button' onClick={() => history.push('/login2')}>отмена</button>
+                                <button type='button' onClick={signup}>Отправить</button>
+                                <button type='button' onClick={() => history.push('/login2')}>Отмена</button>
                             </div>
                         </React.Fragment>
             }

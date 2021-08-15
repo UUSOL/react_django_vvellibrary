@@ -27,7 +27,6 @@ function UserContent() {
         .then(response => {
             console.log(response)
         })
-        console.log(token['vvelToken']);
     }, []);
 
     return (

@@ -1,15 +1,12 @@
-main {
-    background-color: #f4f5f6;
-    margin-top: 300px;
-}
-body {
+body, main {
     background-color: #f4f5f6;
 }
+
 section {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 150px 30px 20px 20px;
+    margin: 140px 30px 20px 20px;
     background-color: #f4f5f6;	
 }
 
@@ -55,11 +52,9 @@ section {
       display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-
 .book-covers {
-    -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+      scrollbar-width: none;
 }
 
 .book-info {
@@ -159,11 +154,7 @@ button.right:hover, button.left:hover {
         width: 67vw;
     }
 }
-@media only screen and (max-width: 1000px){
-    main {
-        margin-top: 380px;
-    }
-}
+
 
 @media only screen and (max-width: 920px){
     .container {
@@ -180,20 +171,13 @@ button.right:hover, button.left:hover {
     }
      .left-side .title, .right-side .title {
        font-size: 42px;
-    }
-    main {
-        margin-top: 515px;
-    }
-  
+    }  
 }
-
-
 
 @media only screen and (max-width: 820px){
     .container {
         width: 57vw;
     }
- 
 }
 @media only screen and (max-width: 720px){
     .container {
@@ -201,16 +185,12 @@ button.right:hover, button.left:hover {
     }
     .container .buttons {
         margin-top: 55px; 
-    }
-
- 
+    } 
 }
 @media only screen and (max-width: 620px){
-
     section {
         width: 93%;
-        margin-left: 5px;
-          
+        margin-left: 5px;     
     }
     .container {
         width: 42vw;
@@ -218,16 +198,10 @@ button.right:hover, button.left:hover {
     .container .buttons {
         margin-top: 50px; 
     }
-   
-
 }
 @media only screen and (max-width: 570px){
- 
     .img-containter > img {
         width: 220px;
         height: 220px;
-    }
-    main {
-        margin-top: 599px;
     }
 }

@@ -8,7 +8,7 @@ function Book(props) {
     let [book, setBook] = useState({});
     let [bookId, setBookId] = useState(props.match.params.id)
     let history = useHistory();
-    let [mode, setMode] = useState('read');
+    let [mode, setMode] = useState('show');
 
 
     useEffect(() => {
@@ -22,11 +22,11 @@ function Book(props) {
                 }
             })
             .then(response => {
-                console.log(response)
+                //console.log(response)
                 return response.json();
             })
             .then(response => {
-                console.log(response)
+                //console.log(response)
                 setBook(response)
             })
             .catch(_ => {
@@ -43,22 +43,23 @@ function Book(props) {
 					<img src={book.cover_src} />	
 				</div>
 				<div className="book-info">
-				
-					<h3>{book.title}</h3>
-					<p>{book.genre}</p> 
-					<div className="rating">
-						<span>Рейтинг: {book.ranking}</span>
-						<span className="fa fa-star"></span>
-					</div>	
-                    <p>Автор: {book.authors}</p>
-					<p>Жанр: {book.genre}</p>
+                    <div className="book-info-title-section">
+                        <h3>{book.title}</h3>
+                        <p>{book.genre}</p> 
+                        <div className="rating">
+                            <span>Рейтинг: {book.ranking}</span>
+                            <span className="fa fa-star"></span>
+                        </div>	
+                        <p>Автор: {book.authors}</p>
+                        <p>Жанр: {book.genre}</p>
+                    </div>
 					<div>
 						<h2>Краткое описание:</h2>
 						<p>{book.summary}</p>
 					</div>
  
 					<div className="buttons">
-						<button>Читать онлайн</button>
+						<button onClick={() => setMode('read')}>Читать онлайн</button>
 						<a href={book.url_to_download} target='_blank' download>Скачать</a>				
 						<button>Добавить в мою библиотеку</button>
 					</div>
@@ -67,7 +68,8 @@ function Book(props) {
             }		
             {mode==='read' &&
                 <div className="Read"> 
-                    <Read />
+                    <Read url={book.url_to_download} />
+                    <button onClick={() => setMode('show')}>X</button>
                 </div>
             }
         </div>     

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from .serializers import BookSerializer, GenreSerializer, AuthorSerializer, UserSerializer
 from django.http import JsonResponse, HttpResponseNotFound
 from rest_framework.parsers import JSONParser
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -270,13 +270,15 @@ class BookViewSetModel(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     authentication_classes = (TokenAuthentication, )
 '''
-'''
+
 class BookViewSetModel(viewsets.ModelViewSet):
-    queryset = Book.objects.filter(users__id)
-    serializer_class = BookSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = (TokenAuthentication, )
-'''
+
+    def list(self, request, *args, **kwargs):
+        queryset = Book.objects.filter(users__id=request.user.id)
+        return Response(BookSerializer(queryset))
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -334,10 +336,29 @@ def search_api(request):
         return Response(serializer.data)
 
 
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
+from rest_framework.authtoken.views import ObtainAuthToken
 @api_view(['GET', 'POST'])
+@authentication_classes((TokenAuthentication,))
+
+class CustomAuthToken(ObtainAuthToken):
+
+    def get(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': token.key,
+            'user_id': user.pk,
+            'email': user.email
+        })
+"""
 def users_books_api(request):
     if request.method == 'GET':
-        print(request)
-        books = Book.objects.all()
+        books = User.objects.all(id=request.user.id)
         serializer = BookSerializer(books, many=True)
         return Response(serializer.data)
+"""

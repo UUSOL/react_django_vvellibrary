@@ -1,3 +1,21 @@
 .Read {
-
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    z-index: 1;
+}
+.Read button {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    border: 0;
+    position: absolute;
+    right: 30px;
+    z-index: 2;
+    transition-duration: 0.3s;
+}
+.Read button:hover {
+    cursor: pointer;
+    background-color: darkorange;
+    transition-duration: 0.3s;
 }
