@@ -9,7 +9,7 @@ function Read(props) {
         <iframe 
             width="100%" 
             height="750px" 
-            src="https://www.yumpu.com/ru/embed/view/DboKBI0OZvrsS1uG" 
+            src={"https://www.yumpu.com/ru/embed/view/DboKBI0OZvrsS1uG"} 
             frameborder="0" 
             allowfullscreen="true"  
             allowtransparency="true">    

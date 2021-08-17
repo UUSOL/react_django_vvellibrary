@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-#b5&u!redjpg6n
 DEBUG = True
 # DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['vvelonlinelibrary.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['vvelonlinelibrary.herokuapp.com', '127.0.0.1', 'yumpu.com']
 
 
 
@@ -66,6 +66,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:8000",
     "http://localhost:3000",
+    "https://yumpu.com",
 ]
 
 # for test

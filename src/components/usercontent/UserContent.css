@@ -1,0 +1,39 @@
+.UserContent button {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    border: 0;
+    position: absolute;
+    float: right;
+    z-index: 2;
+    transition-duration: 0.3s;
+}
+
+.UserContent .book-covers {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px;
+}
+
+.UserContent .book-covers > a {
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid white;
+    width: 250px;
+    height: 310px;
+}
+
+.UserContent .book-covers a > img {
+    width: 220px;
+    height: 280px;
+    box-shadow: 5px 5px 5px 5px lightgrey;
+    margin: 20px;
+    transition: all .3s ease-in-out;
+}
+
+.UserContent .book-covers a > img:hover{
+    cursor: pointer;
+    transform: scale(1.07);
+    transition: all .3s ease-in-out;
+}
+

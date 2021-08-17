@@ -1,11 +1,14 @@
 from django.shortcuts import render, HttpResponse
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
+
 from .models import Book, Author, Genre
 from django.contrib.auth.models import User
 
 from .serializers import BookSerializer, GenreSerializer, AuthorSerializer, UserSerializer
 from django.http import JsonResponse, HttpResponseNotFound
 from rest_framework.parsers import JSONParser
-from rest_framework.decorators import api_view, authentication_classes
+from rest_framework.decorators import api_view, authentication_classes, action, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -271,13 +274,14 @@ class BookViewSetModel(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication, )
 '''
 
-class BookViewSetModel(viewsets.ModelViewSet):
+class BookViewSetModel1(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     authentication_classes = (TokenAuthentication, )
+    serializer_class = UserSerializer
 
-    def list(self, request, *args, **kwargs):
-        queryset = Book.objects.filter(users__id=request.user.id)
-        return Response(BookSerializer(queryset))
+    def get_queryset(self):
+        print(self.request)
+        return User.objects.filter(username=self.request.user.bla)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -326,19 +330,60 @@ def search_api(request):
     data = json.loads(request.body)
     if request.method == 'POST':
         if data['column'] == 'all':
-            books = Book.objects.filter(Q(title__contains=data['query']) | Q(authors__last_name__contains=data['query']))
+            books = Book.objects.filter(Q(title__icontains=data['query']) | Q(authors__last_name__icontains=data['query']))
         elif data['column'] == 'books':
-            books = Book.objects.filter(title__contains=data['query'])
+            books = Book.objects.filter(title__icontains=data['query'])
         elif data['column'] == 'authors':
-            books = Book.objects.filter(authors__last_name__contains=data['query'])
+            books = Book.objects.filter(authors__last_name__icontains=data['query'] | Q(authors__first_name__icontains=data['query']))
 
         serializer = BookSerializer(books, many=True)
         return Response(serializer.data)
 
 
-
+@api_view(['GET', 'POST', 'DELETE'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated, ))
 def users_books_api(request):
     if request.method == 'GET':
-        books = User.objects.all(id=request.user.id)
+        books = Book.objects.filter(users__id=request.user.id)
         serializer = BookSerializer(books, many=True)
         return Response(serializer.data)
+
+    if request.method == 'POST':
+        bookToAdd = json.loads(request.body)
+        book = Book.objects.filter(id=bookToAdd['BookId'])
+        if len(book) > 0:
+            book[0].users.add(request.user.id)
+            serializer = BookSerializer(book, many=True)
+            return Response(serializer.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'DELETE':
+        bookToRemove = json.loads(request.body)
+        book = Book.objects.filter(id=bookToRemove['BookId'])
+        if len(book) > 0:
+            book[0].users.remove(request.user.id)
+            serializer = BookSerializer(book, many=True)
+            return Response(serializer.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+"""
+class GetAuthToken(ObtainAuthToken):
+    def get(self, request, *args, **kwargs):
+        response = super(GetAuthToken, self).get(request, *args, **kwargs)
+        token = Token.objects.get(key=response.data['token'])
+        user = User.objects.get(id=token.user_id)
+        user_serializer = UserSerializer(user, many=False)
+        return Response(user_serializer)
+"""
+
+
+class TestViewSet(viewsets.ModelViewSet):
+    authentication_classes = (TokenAuthentication)
+    permission_classes = (IsAuthenticated,)
+    serializer_class = BookSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        queryset = Book.objects.filter(user__id=request.user.id)
