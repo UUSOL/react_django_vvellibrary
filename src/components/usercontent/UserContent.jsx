@@ -30,6 +30,7 @@ function UserContent() {
          })
          .then(response => {
             const newBooks = usersBooks.filter(book => book.id != ev.target.dataset.id)
+            console.log(newBooks)
             setUsersBooks(newBooks)
          })
      }
@@ -40,6 +41,7 @@ function UserContent() {
             return;
         }
        //const stringToFetch = `http://127.0.0.1:8000/api/choice/`;
+      
        const stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/api/choice/'; 
        fetch(stringToFetch, {
             'method': 'GET',
@@ -49,10 +51,12 @@ function UserContent() {
                 'Authorization': `Token ${token['vvelToken']}`
             }
         })
-        .then(response => {        
+        .then(response => {
+            console.log(response)        
             return response.json();
         })
         .then(response => {
+            console.log(response)
             setUsersBooks(response)
         })
     }, []);

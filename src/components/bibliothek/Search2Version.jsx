@@ -27,33 +27,35 @@ function Search(props) {
     let timer=null;
 
     useEffect(() => {
-         if (timer!=null) clearTimeout(timer);
+         if (timer!==null) clearTimeout(timer);
          timer = setTimeout(() => {
             //const stringToFetch = `http://127.0.0.1:8000/api/search/`;
-            let stringToFetch = `https://vvelonlinelibrary.herokuapp.com/api/search/`;
-            userInput && fetch(stringToFetch, {
-                'method': 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrftoken['csrftoken'] 
-                },
-                body: JSON.stringify({
-                    'query': userInput,
-                    'column': column
+            //var stringToFetch = `https://vvelonlinelibrary.herokuapp.com/api/search/`;
+            if (userInput !== ''){
+                fetch('https://vvelonlinelibrary.herokuapp.com/api/search/', {
+                    'method': 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken['csrftoken'] 
+                    },
+                    body: JSON.stringify({
+                        'query': userInput,
+                        'column': column
+                    })
                 })
-            })
-            .then(response => {
-                console.log(response)
-                return response.json();
-            })
-            .then(response => {
-                console.log(response)
-                setBooks(response)
-            })
-            .catch(error => console.log(error))
-            console.log(userInput)
-            console.log('This will run after 1 second!')
-          }, 500);
+                .then(response => {
+                    console.log(response)
+                    return response.json();
+                })
+                .then(response => {
+                    console.log(response)
+                    setBooks(response)
+                })
+                .catch(error => console.log(error))
+                console.log(userInput)
+                console.log('This will run after 1 second!')
+            }
+            }, 500);
           return () => clearTimeout(timer);
         }, [column, userInput])    
 
