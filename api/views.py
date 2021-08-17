@@ -334,7 +334,7 @@ def search_api(request):
         elif data['column'] == 'books':
             books = Book.objects.filter(title__icontains=data['query'])
         elif data['column'] == 'authors':
-            books = Book.objects.filter(authors__last_name__icontains=data['query'] | Q(authors__first_name__icontains=data['query']))
+            books = Book.objects.filter(Q(authors__last_name__icontains=data['query']) | Q(authors__first_name__icontains=data['query']))
 
         serializer = BookSerializer(books, many=True)
         return Response(serializer.data)
@@ -368,16 +368,6 @@ def users_books_api(request):
             return Response(serializer.data)
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
-
-"""
-class GetAuthToken(ObtainAuthToken):
-    def get(self, request, *args, **kwargs):
-        response = super(GetAuthToken, self).get(request, *args, **kwargs)
-        token = Token.objects.get(key=response.data['token'])
-        user = User.objects.get(id=token.user_id)
-        user_serializer = UserSerializer(user, many=False)
-        return Response(user_serializer)
-"""
 
 
 class TestViewSet(viewsets.ModelViewSet):

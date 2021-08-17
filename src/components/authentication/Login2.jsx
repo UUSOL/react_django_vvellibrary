@@ -100,8 +100,8 @@ function Login2() {
 
 
     const login = (body) => {
-        const stringToFetch = 'http://127.0.0.1:8000/auth/';
-        //let stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/auth/';
+        //const stringToFetch = 'http://127.0.0.1:8000/auth/';
+        let stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/auth/';
 
         fetch(stringToFetch, {
             'method': 'POST',
