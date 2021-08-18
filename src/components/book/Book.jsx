@@ -14,7 +14,7 @@ function Book(props) {
     let [mode, setMode] = useState('show');
 
     const addBookToUserContent = () => {
-        fetch('http://127.0.0.1:8000/api/choice/', {
+        fetch('https://vvelonlinelibrary.herokuapp.com/api/choice/', {
             'method': 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ function Book(props) {
             }		
             {mode==='read' &&
                 <div className="Read"> 
-                    <Read url={book.url_to_download} />
+                    <Read book={book} url={book.url_to_download} />
                     <button onClick={() => setMode('show')}>X</button>
                 </div>
             }

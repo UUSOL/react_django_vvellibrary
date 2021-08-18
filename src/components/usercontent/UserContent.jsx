@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import {useCookies} from 'react-cookie';
+import './UserContent.css';
 
 function UserContent() {
     const [token, setToken, removeToken] = useCookies(['vvelToken']);
@@ -63,6 +64,7 @@ function UserContent() {
 
     return (
         <div className="UserContent">
+            <h2>Ваши закладки:</h2>
             <div className="book-covers">  
                 {usersBooks.length > 0 && usersBooks.map(book => {
                     return (

@@ -43,4 +43,8 @@
     .HeaderNavigation > input {
       display: none;
     }
+    .SActivated active {
+        color: darkorange;
+        border-bottom: 1px dotted darkorange;
+    }
 }
