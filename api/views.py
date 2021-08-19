@@ -130,7 +130,7 @@ def book_list_api(request):
 
 
 
-
+""" used in original
 @api_view(['GET', 'PUT', 'DELETE'])
 def book_detail_api(request, pk):
     try:
@@ -150,10 +150,12 @@ def book_detail_api(request, pk):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+
     if request.method == 'DELETE':
         book.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+"""
 
 class BookList(APIView):
     def get(self, request):
@@ -266,13 +268,6 @@ class BookViewSetGeneric(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
-'''
-class BookViewSetModel(viewsets.ModelViewSet):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
-    permission_classes = [IsAuthenticated]
-    authentication_classes = (TokenAuthentication, )
-'''
 
 class BookViewSetModel1(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -370,10 +365,22 @@ def users_books_api(request):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 
-class TestViewSet(viewsets.ModelViewSet):
-    authentication_classes = (TokenAuthentication)
-    permission_classes = (IsAuthenticated,)
-    serializer_class = BookSerializer
+def test_api2(request, pk):
+    if request.method == 'GET':
+        print(request)
+        print(id)
+        book = Book.objects.values('id', 'summary', 'title',
+                                   'url_to_read', 'url_to_download',
+                                   'ranking', 'cover_src',
+                                   'authors__first_name',
+                                   'authors__last_name', 'genres__name').filter(id=pk)
+        book_to_reduce = json.dumps(list(book))
+        print(book_to_reduce)
+        return HttpResponse(json.dumps(list(book)))
 
-    def retrieve(self, request, *args, **kwargs):
-        queryset = Book.objects.filter(user__id=request.user.id)
+
+       # from django.core import serializers
+       # data2 = serializers.serialize('json', books2)
+
+
+

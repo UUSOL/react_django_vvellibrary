@@ -2,6 +2,8 @@
     height: auto;
     padding: 20px;
     background-color: white;
+    position: relative;
+    z-index: 1;
 }
 .UserContent button {
     position: absolute;
@@ -23,8 +25,6 @@
     position: relative;
 }
 
-
-
 .UserContent .book-covers a > img {
     width: 220px;
     height: 280px;
@@ -35,17 +35,8 @@
 
 .UserContent .book-covers a > img:hover{
     cursor: pointer;
-    transform: scale(1.07);
+    box-shadow: 10px 10px 10px 10px lightcyan;
     transition: all .3s ease-in-out;
-}
-
-.UserContent .book-covers:focus-within > button{
-   background-color: blue;
-}
-
-
-.UserContent .book-covers a > img::after button{
-background-color: black;
 }
 
 .UserContent .book-covers button:hover {

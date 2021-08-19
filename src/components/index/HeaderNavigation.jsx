@@ -12,13 +12,13 @@ function HeaderNavigation() {
     }
     return (
         <div className="HeaderNavigation">
-           
+            
             <NavLink to="/" activeClassName="SActivated">На главную</NavLink>
-            <NavLink to="/search2" activeClassName="SActivated">Найти книгу</NavLink>
+            <NavLink to="/search" activeClassName="SActivated">Найти книгу</NavLink>
             <NavLink to="/genres/100" activeClassName="SActivated">Библиотека</NavLink>
-            <NavLink to="/choice" activeClassName="SActivated active">Закладки</NavLink>
+            <NavLink to="/choice" activeClassName="SActivated">Закладки</NavLink>
             <NavLink onClick={(token['vvelToken']) ? test : null} 
-                    to={ (token['vvelToken']) ? '/' : '/login2'} activeClassName="SActivated">
+                    to={ (token['vvelToken']) ? '/' : '/login'} activeClassName="SActivated">
                     { (token['vvelToken']) ? 'Выйти' : 'Войти'}
             </NavLink> 
         </div>   

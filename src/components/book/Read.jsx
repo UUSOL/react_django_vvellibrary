@@ -8,8 +8,8 @@ function Read(props) {
             width="100%" 
             height="700px" 
             src={props.book.url_to_read || props.book.url_to_download} 
-            frameborder="0" 
-            allowfullscreen="true"  
+            frameBorder="0" 
+            allowFullScreen={true}  
             allowtransparency="true">    
         </iframe>  
         )

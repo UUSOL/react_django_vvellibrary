@@ -84,3 +84,13 @@
         width: 400px;
     }
 }
+
+@media only screen and (max-width: 500px){
+    .Book .book-cover > img {
+        height: 400px;
+        width: 300px;
+    }
+    .Book .buttons > button, .Book .buttons > a {
+        width: 300px;
+    }
+}

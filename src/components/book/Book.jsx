@@ -6,12 +6,14 @@ import Read from './Read.jsx';
 
 
 function Book(props) {
-    let [book, setBook] = useState({});
+    //book comes from server in normalized form, where can be multiple rows with same data
+    const [book, setBook] = useState([]);
     let [bookId, setBookId] = useState(props.match.params.id)
     const [token, setToken, removeToken] = useCookies(['vvelToken']);
     const [csrftoken, setCsrfToken] = useCookies(['csrftoken'])
     let history = useHistory();
     let [mode, setMode] = useState('show');
+    let [loading, setLoading] = useState(true);
 
     const addBookToUserContent = () => {
         fetch('https://vvelonlinelibrary.herokuapp.com/api/choice/', {
@@ -53,8 +55,9 @@ function Book(props) {
                 return response.json();
             })
             .then(response => {
-                //console.log(response)
+                console.log(response)
                 setBook(response)
+                setLoading(false)
             })
             .catch(_ => {
                 history.push('/');
@@ -64,25 +67,34 @@ function Book(props) {
 
     return (
         <div className='Book'>	
-        {mode==='show' &&
+
+            {!loading && book.length > 0 && mode==='show' &&
                 <React.Fragment>
 				<div className="book-cover">
 					<img src={book.cover_src} />	
 				</div>
 				<div className="book-info">
                     <div className="book-info-title-section">
-                        <h3>{book.title}</h3>
-                        <p>{book.genre}</p> 
+                        <h3>{book[0].title}</h3>
+                        <p>{book[0].genre}</p> 
                         <div className="rating">
-                            <span>Рейтинг: {book.ranking}</span>
-                            <span className="fa fa-star"></span>
+                            <span>Рейтинг: {book[0].ranking}</span>
                         </div>	
-                        <p>Автор: {book.authors}</p>
-                        <p>Жанр: {book.genre}</p>
+                        <p>Автор: {book.reduce((author1, author2) => {
+                            //join multiple authors
+                            let author_to_render = `${author2.authors__first_name} ${author2.authors__last_name}`
+                            return !author1.includes(author_to_render) ? [...author1, author_to_render] : author1;
+                        }, []).join(', ')}
+                        </p>
+                        <p>Жанр: { book.reduce( (genre1, genre2) => {
+                            let genre_to_render = genre2.genres__name;
+                            return !genre1.includes(genre_to_render) ? [...genre1, genre_to_render] : genre1;
+                        }, []).join(', ') }
+                        </p>
                     </div>
 					<div>
 						<h2>Краткое описание:</h2>
-						<p>{book.summary}</p>
+						<p>{book[0].summary}</p>
 					</div>
  
 					<div className="buttons">
@@ -92,7 +104,8 @@ function Book(props) {
 					</div>
 				</div>
                 </React.Fragment>
-            }		
+            }	
+
             {mode==='read' &&
                 <div className="Read"> 
                     <Read book={book} url={book.url_to_download} />

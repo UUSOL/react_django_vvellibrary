@@ -32,7 +32,7 @@
     }
 }
 
-@media only screen and (max-width: 723px){
+@media only screen and (max-width: 600px){
     .HeaderNavigation {
         flex-direction: row;
         height: auto;
@@ -42,9 +42,5 @@
     } 
     .HeaderNavigation > input {
       display: none;
-    }
-    .SActivated active {
-        color: darkorange;
-        border-bottom: 1px dotted darkorange;
     }
 }

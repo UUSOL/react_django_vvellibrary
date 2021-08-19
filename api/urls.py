@@ -4,8 +4,10 @@ from django.urls import path, include
 
 # with routers and viewset
 from .views import BookViewSet, UserViewSet, BookList, GenreViewSet, BookViewSetModel1
-from .views import book_list_api, book_detail_api, books_by_genre_list_api, genre_list_api, search_api, users_books_api
+from .views import book_list_api, books_by_genre_list_api, genre_list_api, search_api, users_books_api, test_api2
 from rest_framework.routers import DefaultRouter
+
+"""book_detail_api,"""
 
 router = DefaultRouter()
 #router.register('books/', BookViewSet, basename='books')
@@ -18,7 +20,8 @@ router.register('users', UserViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('books/', book_list_api),
-    path('books/<int:pk>', book_detail_api),
+    #path('books/<int:pk>', book_detail_api),
+    path('books/<int:pk>', test_api2),
     path('books/search', BookList.as_view()),
     path('genres/<int:genre>', books_by_genre_list_api),
     path('genres/', genre_list_api),

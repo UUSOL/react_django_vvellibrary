@@ -24,7 +24,13 @@
 }
 @media only screen and (max-width: 700px) {
     .Header img { 
-        width: 430px;
-        height: 330px;    
+        width: 400px;
+        height: 300px;    
+    }
+}
+@media only screen and (max-width: 500px) {
+    .Header img { 
+        width: 350px;
+        height: 300px;    
     }
 }
