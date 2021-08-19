@@ -12,7 +12,6 @@ function HeaderNavigation() {
     }
     return (
         <div className="HeaderNavigation">
-            
             <NavLink to="/" activeClassName="SActivated">На главную</NavLink>
             <NavLink to="/search" activeClassName="SActivated">Найти книгу</NavLink>
             <NavLink to="/genres/100" activeClassName="SActivated">Библиотека</NavLink>

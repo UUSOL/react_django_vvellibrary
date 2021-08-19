@@ -71,7 +71,7 @@ function Book(props) {
             {!loading && book.length > 0 && mode==='show' &&
                 <React.Fragment>
 				<div className="book-cover">
-					<img src={book.cover_src} />	
+					<img src={book[0].cover_src} />	
 				</div>
 				<div className="book-info">
                     <div className="book-info-title-section">
@@ -99,7 +99,7 @@ function Book(props) {
  
 					<div className="buttons">
 						<button onClick={() => setMode('read')}>Читать онлайн</button>
-						<a href={book.url_to_download} target='_blank' download>Скачать</a>				
+						<a href={book[0].url_to_download} target='_blank' download>Скачать</a>				
 						<button onClick={addBookToUserContent}>Добавить в мою библиотеку</button>
 					</div>
 				</div>
@@ -108,7 +108,7 @@ function Book(props) {
 
             {mode==='read' &&
                 <div className="Read"> 
-                    <Read book={book} url={book.url_to_download} />
+                    <Read book={book[0]} />
                     <button onClick={() => setMode('show')}>X</button>
                 </div>
             }
