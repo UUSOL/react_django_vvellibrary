@@ -9,25 +9,22 @@ function Search(props) {
     let [page, setPage] = useState(1);
     let [userInput, setUserInput] = useState('');
     let [column, setColumn] = useState('all');
-    const [csrftoken, setCsrfToken] = useCookies(['csrftoken'])
+    const [csrftoken] = useCookies(['csrftoken'])
 
     const next = () => {
         setPage(++page)
     }
-
     const searchBook = (ev) => {
-        const minSizeOfSearch = 3;
-            setUserInput(ev.target.value)
+        setUserInput(ev.target.value);
     }
-     
     const changeColumnToSearch = (ev) => {
         setColumn(ev.target.dataset.field);
     }
     let timer=null;
 
     useEffect(() => {
-         if (timer!==null) clearTimeout(timer);
-         timer = setTimeout(() => {
+        if (timer!==null) clearTimeout(timer);
+        timer = setTimeout(() => {
             //const stringToFetch = `http://127.0.0.1:8000/api/search/`;
             //var stringToFetch = `https://vvelonlinelibrary.herokuapp.com/api/search/`;
             if (userInput !== ''){
@@ -42,58 +39,17 @@ function Search(props) {
                         'column': column
                     })
                 })
-                .then(response => {
-                    console.log(response)
-                    return response.json();
-                })
-                .then(response => {
-                    console.log(response)
-                    setBooks(response)
-                })
+                .then(response => response.json())
+                .then(response => setBooks(response))
                 .catch(error => console.log(error))
-                console.log(userInput)
-                console.log('This will run after 1 second!')
             }
-            }, 500);
-          return () => clearTimeout(timer);
-        }, [column, userInput])    
-
-
-
-
-
-
-
-
-
-            //const stringToFetch = `http://127.0.0.1:8000/api/search/`;
-          /*  const stringToFetch = `https://vvelonlinelibrary.herokuapp.com/api/search/`;
-            userInput && fetch(stringToFetch, {
-                'method': 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrftoken['csrftoken'] 
-                },
-                body: JSON.stringify({
-                    'query': userInput,
-                    'column': column
-                })
-            })
-            .then(response => {
-                console.log(response)
-                return response.json();
-            })
-            .then(response => {
-                console.log(response)
-                setBooks(response)
-            })
-            .catch(error => console.log(error))
+        }, 500);
         
-    }, [column, userInput]);
-    */
+        return () => clearTimeout(timer);
+    }, [column, userInput])    
+
     return (
-        <div className="Search2Version">
-           
+        <div className="Search2Version">    
             <input type='text' defaultValue={userInput} onChange={searchBook} 
                 placeholder='введите книгу или автора' />
             {userInput && <h2>Найдено {books.length} книг по запросу {userInput}</h2>}
@@ -106,17 +62,15 @@ function Search(props) {
                 { books.length > 0 && books.slice(0, page * 10).map(book => {
                         return (
                             <NavLink key={book.id} to={`/books/${book.id}`}>
-                                <img src={book.cover_src} />
+                                <img alt="Cover of book" src={book.cover_src} />
                             </NavLink>	
                         );
                     })
                 }
             </div>
-    
             <button onClick={next} disabled={books.length / (page * 10) < 1}>Показать еще</button>
-
         </div>
-        )
+    )
 }
 
 export default Search;

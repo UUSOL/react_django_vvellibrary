@@ -33,7 +33,6 @@
 	transition-duration: 0.5s;
     margin-bottom: 50px;
 }
-
 .Library button:hover {
 	transition-duration: 0.5s;
 	cursor: pointer;
@@ -41,14 +40,11 @@
 	background-color: darkorange;
 	color: white;
 }
-
-
 .Library .book-covers {
     display: flex;
     flex-wrap: wrap;
     margin: 50px;
 }
-
 .Library .book-covers > a {
     padding: 10px;
     margin: 5px;
@@ -56,7 +52,6 @@
     width: 250px;
     height: 310px;
 }
-
 .Library .book-covers > a > img {
     width: 220px;
     height: 280px;
@@ -64,20 +59,16 @@
     margin: 20px;
     transition: all .3s ease-in-out;
 }
-
 .Library .book-covers > a > img:hover{
     cursor: pointer;
     transform: scale(1.07);
     transition: all .3s ease-in-out;
 }
-
-
 @media only screen and (max-width: 920px){
     .Library .book-covers {
         margin-top: 120px;
     }
 }
-
 @media only screen and (max-width: 700px){
     .Library {
         margin-left: 0;

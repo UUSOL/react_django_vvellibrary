@@ -5,29 +5,24 @@
 	padding: 0 30px 70px 0;
     
 }
-
 .additional-info > a{  
     text-decoration: none;
-	color: blue;
+	color: darkorange;
 	font-size: 24px;
 }
-
 .additional-info > a:hover {  
-	color: orange;
+	color: blue;
 }
-
 footer {
     position: relative;
     height: 200px;
     background-color: #f3f4f5;
 }
-
 footer > svg {
     position: absolute;
     margin-top: -185px;
     background-color: white;
 }
-
 @media only screen and (max-width: 850px){
     footer > svg {
         margin-top: -110px;

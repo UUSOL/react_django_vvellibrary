@@ -5,15 +5,14 @@ import {useCookies} from 'react-cookie';
 import { NavLink } from 'react-router-dom';
 
 
-function Main(props) {
-   
+function Main(props) {  
     const [books, setBooks] = useState({
         'Классика': null,
         'Романы': null,
         'Детективы': null,
         'Сказки': null,
-    })
-    const [csrftoken, setCsrfToken] = useCookies(['csrftoken'])
+    });
+    const [csrftoken] = useCookies(['csrftoken']);
 
     useEffect(() => {
         //const stringToFetch = 'http://127.0.0.1:8000/api/books/'
@@ -25,38 +24,26 @@ function Main(props) {
                     'X-CSRFToken': csrftoken['csrftoken']
                 }
         })
+        .then(response => response.json())
         .then(response => {
-           
-           return response.json();
-        })
-        .then(response => {
-          
+            // data from backend will come already sorted 
             setBooks({
-            'Классика': response.splice(0, 10),
-            'Романы': response.splice(0, 10),
-            'Детективы': response.splice(0, 10),
-            'Сказки': response.splice(0, 10)
-        })})/*
-        .then(response => setBooks({
-            classic: response.filter(book => book.genres.includes('классика')),
-            novel: response.filter(book => book.genres.includes('романы')),
-            detective: response.filter(book => book.genres.includes('детективы')),
-            fairyTail: response.filter(book => book.genres.includes('сказки')),
-        }))*/
-        .catch(error => console.log(error))
+                'Классика': response.splice(0, 10),
+                'Романы': response.splice(0, 10),
+                'Детективы': response.splice(0, 10),
+                'Сказки': response.splice(0, 10)
+        })})
+        .catch();
     }, []);
 
     const genres = ['Классика', 'Романы', 'Детективы', 'Сказки'];
     const genresEn = ['classic', 'novel', 'detective', 'fairyTail']
     const galery = genres.map( (genre, index) => {
-        return (  
-                  
-                <section key={genre} className={ (index % 2 == 0) ? 'left-side' : 'right-side'}>
-                   
-                    {   
-                        index % 2 === 0 &&
+        return (             
+                <section key={genre} className={ (index % 2 === 0) ? 'left-side' : 'right-side'}> 
+                    {   index % 2 === 0 &&
                         <div className="img-containter">
-                            <img src={`https://vvellibrary.s3.eu-central-1.amazonaws.com/images/${genresEn[index]}.JPG`} />
+                            <img alt="Man reading a book" src={`https://vvellibrary.s3.eu-central-1.amazonaws.com/images/${genresEn[index]}.JPG`} />
                         </div>
                     }
                     <div className="container">
@@ -66,23 +53,18 @@ function Main(props) {
                                 <p>Топ-10 книг в жанре {genre} по версии наших читателей</p>
                                 <NavLink to={`/genres/${index+1}`}>подробнее</NavLink>
                             </div>	
-   
                         </div>
-                        
-                        {books['Классика'] && <BookGalery bookArr={books[genre]} />
-    }      
+                        {books['Классика'] && <BookGalery bookArr={books[genre]} />}      
                     </div>
-                    {   
-                        index % 2 !== 0 &&
+                    {   index % 2 !== 0 &&
                         <div className="img-containter">
-                             <img src={`https://vvellibrary.s3.eu-central-1.amazonaws.com/images/${genresEn[index]}.JPG`} />
+                             <img alt="Woman reading a book" src={`https://vvellibrary.s3.eu-central-1.amazonaws.com/images/${genresEn[index]}.JPG`} />
                         </div>
                     }
-                
                 </section>      
         );
     });
-
+    // books['классика'] means the data already come from backend and exists in state
     return (
         <main className="main">
             {books['Классика'] && galery}

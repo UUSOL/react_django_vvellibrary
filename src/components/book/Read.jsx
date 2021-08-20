@@ -1,16 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
 import './Read.css';
 
 function Read(props) {
     return (
-        <iframe 
-            width="100%" 
+        <iframe
+            title={props.title} 
+            width="90%" 
             height="700px" 
             src={props.book.url_to_read || props.book.url_to_download} 
             frameBorder="0" 
-            allowFullScreen={true}  
-            allowtransparency="true">    
+            allowFullScreen={true}>    
         </iframe>  
         )
 }

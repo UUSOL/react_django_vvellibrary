@@ -4,7 +4,6 @@
     z-index: 1;
     right:10px;
 }
-
 .Genres div {
     display: flex;
     flex-direction: column;
@@ -12,21 +11,10 @@
 .Genres span {
     color: orange;   
 }
-
 .Genres span:hover {
     color: skyblue;
     cursor: pointer;
 }
-
-
-
-
-
-
-
-
-
-
 @media only screen and (max-width: 920px){
     .Genres {
         display: inline-block;

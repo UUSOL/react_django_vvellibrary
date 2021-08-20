@@ -19,7 +19,7 @@
     background-color: darkorange;
     transition-duration: 0.3s;
 }
-
 iframe {
-    background-color: transparent;
+    background-color: black;
+    z-index: 5;
 }

@@ -4,11 +4,10 @@ import {useCookies} from 'react-cookie';
 import './UserContent.css';
 
 function UserContent() {
-    const [token, setToken, removeToken] = useCookies(['vvelToken']);
-    const [csrftoken, setCsrfToken] = useCookies(['csrftoken']);
+    const [token] = useCookies(['vvelToken']);
+    const [csrftoken] = useCookies(['csrftoken']);
     const [usersBooks, setUsersBooks] = useState([]);
     let [loading, setLoading] = useState(true);
-    let [bookId, setBookId] = useState();
     let history = useHistory();
 
 
@@ -16,34 +15,30 @@ function UserContent() {
         //const stringToFetch = `http://127.0.0.1:8000/api/choice/`;
         const stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/api/choice/'; 
         fetch(stringToFetch, {
-             'method': 'DELETE',
-             headers: {
-                 'Content-Type': 'application/json',
-                 'X-CSRFToken': csrftoken['csrftoken'],
-                 'Authorization': `Token ${token['vvelToken']}`
-             },
-             body: JSON.stringify({
+            'method': 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken['csrftoken'],
+                'Authorization': `Token ${token['vvelToken']}`
+            },
+            body: JSON.stringify({
                 "BookId": ev.target.dataset.id
             })
-         })
-         .then(response => {
-             console.log(response)
-             return response.json();
-         })
-         .then(response => {
+        })
+        .then(response => response.json())
+        .then(response => {
             const newBooks = usersBooks.filter(book => book.id != ev.target.dataset.id)
-            console.log(newBooks)
-            setUsersBooks(newBooks)
-         })
-     }
+            setUsersBooks(newBooks);
+        })
+    }
 
     useEffect( () => {
         if (!token['vvelToken']) {
             history.push('/login');
             return;
         }
+
        //const stringToFetch = `http://127.0.0.1:8000/api/choice/`;
-      
        const stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/api/choice/'; 
        fetch(stringToFetch, {
             'method': 'GET',
@@ -53,12 +48,8 @@ function UserContent() {
                 'Authorization': `Token ${token['vvelToken']}`
             }
         })
+        .then(response => response.json())
         .then(response => {
-            console.log(response)        
-            return response.json();
-        })
-        .then(response => {
-            console.log(response)
             setUsersBooks(response)
             setLoading(false);
         })
@@ -76,7 +67,7 @@ function UserContent() {
                         return (
                             <div key={book.id}>
                                 <NavLink key={book.id} to={`/books/${book.id}`}>
-                                        <img src={book.cover_src} />
+                                        <img alt="Cover of book" src={book.cover_src} />
                                 </NavLink>	
                                 <button 
                                     data-id={book.id} 
@@ -87,7 +78,6 @@ function UserContent() {
                     })}
                 </div>
             }
-           
         </div>
     );
 }

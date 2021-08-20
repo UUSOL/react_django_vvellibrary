@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {useLocation} from 'react-router-dom';
 import {useCookies} from 'react-cookie';
 import {useHistory} from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
 import './Login.css';
 
 function Login() {
@@ -12,9 +10,8 @@ function Login() {
     const [email, setEmail] = useState('');
     const [error, setError] = useState([]);
     const [token, setToken] = useCookies(['vvelToken']);
-    const [csrftoken, setCsrfToken] = useCookies(['csrftoken'])
-
-    let history = useHistory();
+    const [csrftoken] = useCookies(['csrftoken'])
+    const history = useHistory();
 
     useEffect(() => {
         if(token['vvelToken']) {
@@ -22,37 +19,32 @@ function Login() {
         }
     }, [token]);
 
+
     const isEligableFromFrontEnd = () => {
-       
-        //console.log('in frontend')
         const errors = []
         if (!username || !password || !confirm || !email) {
-            errors.push('Заполните, пожалуйста, все поля')
+            errors.push('Заполните, пожалуйста, все поля.')
         }
         if(username && !/^[\d\w-_]+$/.test(username)) {
-            errors.push('Имя пользователя может содержать только буквы, цифры, тире и нижнее подчеркивание')
+            errors.push('Имя пользователя может содержать только буквы, цифры, тире и нижнее подчеркивание.')
         }
         if(password !== confirm) {
-            errors.push('Пароли не совпадают')
+            errors.push('Пароли не совпадают.')
         }
         if(password.lenth < 8) {
-            errors.push('Пароль слишком короткий')
+            errors.push('Пароль слишком короткий. Введите минимум 8 символов.')
         }
-
+        if(email && (/__{1,}/.test(email) || !/@/.test(email) || email.match(/@/g).length > 1)) {
+            errors.push('Введите корректный адрес электронной почты.');
+        }
         if (errors.length) {
             setError(errors)
         }
-        //console.log(errors)
         return errors.length === 0;
     }
 
-
-
-
-
-    /////////////////
     const IsEligableFromBackend = (response) => {
-        //console.log('in backend')
+        // from backend error come in form {field: ['error message']}
         if (!Array.isArray(response.username) && 
             !Array.isArray(response.password) && 
             !Array.isArray(response.email)) {
@@ -64,10 +56,10 @@ function Login() {
             const usernameErrorFromBackend = response.username[0];
             switch(usernameErrorFromBackend) {
                 case 'A user with that username already exists.':
-                    errors.push('Пользователь с таким именем уже существует');
+                    errors.push('Пользователь с таким именем уже существует.');
                     break;
                 case 'This field may not be blank.':
-                    errors.push('Имя Пользователя не может быть пустым');
+                    errors.push('Имя Пользователя не может быть пустым.');
                     break;
                 default:
                     errors.push(...response.username);
@@ -78,13 +70,13 @@ function Login() {
             const emailErrorFromBackend = response.email[0];
             switch(emailErrorFromBackend) {
                 case 'user with this email address already exists.':
-                    errors.push('Пользователь с таким адресом электронной почты уже существует');
+                    errors.push('Пользователь с таким адресом электронной почты уже существует.');
                     break;
                 case 'This field may not be blank.':
-                    errors.push('Поле email не может быть пустым');
+                    errors.push('Поле email не может быть пустым.');
                     break;
                 case 'Enter a valid email address.':
-                    errors.push('Введите корректный адрес электронной почты')
+                    errors.push('Введите корректный адрес электронной почты.')
                     break;
                 default:
                     errors.push(...response.email);
@@ -100,9 +92,13 @@ function Login() {
 
 
     const login = (body) => {
+        if (!username || !password) {
+            setError(['Заполните, пожалуйста, все поля']);
+            return;
+        }
+
         //const stringToFetch = 'http://127.0.0.1:8000/auth/';
         let stringToFetch = 'https://vvelonlinelibrary.herokuapp.com/auth/';
-
         fetch(stringToFetch, {
             'method': 'POST',
             headers: {
@@ -112,10 +108,10 @@ function Login() {
             body: JSON.stringify({username, password})
         })
         .then(response => response.json())
-        .then(response => {
-            return (response.token) ? setToken('vvelToken', response.token) : null
+        .then(response => {  
+            return (response.token) ? setToken('vvelToken', response.token) :  setError(['Пользователь с такими данными не найден.'])
         })
-        .catch(error => console.log(error));
+        .catch(error => setError(['Извините. Что-то пошло не так.']));
     }
 
     const signup = (body) => {
@@ -132,12 +128,11 @@ function Login() {
             })
             .then(response => response.json())
             .then(response => {
-                //console.log(response)
                 if ( IsEligableFromBackend(response) ){
                     return (response.username === username) ? login() : null;
                 }
             })
-            .catch(error => console.log(error));
+            .catch(error => setError(['Извините. Что-то пошло не так.']));
         }
     }
 

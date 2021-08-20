@@ -1,6 +1,6 @@
 .HeaderNavigation {
     font-size: 20px;
-    padding: 10px;
+    padding: 15px;
     float: right;
     position:relative;
     z-index: 1;
@@ -15,14 +15,13 @@
     margin-right: 10px;
 }
 .HeaderNavigation > a {
-    color: blue;
+    color: darkorange;
     text-decoration: none;
     margin: 20px;
 }
 .HeaderNavigation > a:hover {
-    color: orange;  
+    color: blue;  
 }
-
 @media only screen and (max-width: 940px){
     .HeaderNavigation {
         display: flex;
@@ -33,7 +32,6 @@
         margin-right: 0;  
     }
 }
-
 @media only screen and (max-width: 700px){
     .HeaderNavigation a {
         padding-right: 5px;

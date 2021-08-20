@@ -32,14 +32,6 @@ function Router() {
     </CookiesProvider> 
   )
 }
-/*
-create book/:id
-rename genres/:genre to catalog/:genre
- 
-*/
-
-
-
 
 ReactDOM.render(
   <React.StrictMode>

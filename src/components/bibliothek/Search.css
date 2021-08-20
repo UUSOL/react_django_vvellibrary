@@ -8,7 +8,6 @@
     z-index: 1;
     background-color: white;
 }
-
 .Search2Version > input {
     width: 470px;
     height: 45px;
@@ -18,7 +17,6 @@
     padding: 7px;
     margin-right: 5px;
 }
-
 .Search2Version > button {
 	width: 500px;
 	height: 55px;
@@ -30,7 +28,6 @@
 	border: 0;
 	transition-duration: 0.5s;
 }
-
 .Search2Version > button:hover {
 	transition-duration: 0.5s;
 	cursor: pointer;
@@ -38,7 +35,6 @@
 	background-color: darkorange;
 	color: white;
 }
-
 .Search2Version > .sort-buttons {
     margin: 30px;
 }
@@ -47,20 +43,16 @@
     color:orange;
     font-size: 24px;
 }
-
 .Search2Version > .sort-buttons span:hover  {
     color:lightblue;
     cursor: pointer;
 }
-
-
 .Search2Version .book-covers {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
     margin: 50px;
 }
-
 .Search2Version .book-covers > a {
     padding: 10px;
     margin: 5px;
@@ -68,7 +60,6 @@
     width: 250px;
     height: 310px;
 }
-
 .Search2Version .book-covers > a > img {
     width: 220px;
     height: 280px;
@@ -76,20 +67,17 @@
     margin: 20px;
     transition: all .3s ease-in-out;
 }
-
 .Search2Version .book-covers > a > img:hover{
     cursor: pointer;
     transform: scale(1.07);
     transition: all .3s ease-in-out;
 }
-
 @media only screen and (max-width: 1000px){
     .Search2Version .book-covers{
         margin: 0;
         width: 100%;
     }
 }
-
 @media only screen and (max-width: 600px){
     .Search2Version .book-covers{
         width: 100%;
@@ -99,7 +87,6 @@
        padding: 0 5px;
        text-align: center;
     }
-
     .Search2Version > input {
         width: 90%;
     }

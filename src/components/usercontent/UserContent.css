@@ -7,15 +7,16 @@
 }
 .UserContent button {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     font-size: 30px;
     border: 0;
     z-index: 1;
     transition-duration: 0.3s;
-   
-    margin-left: -70px;
-    margin-top: 15px;
+    opacity: 0.5;
+    color: black;
+    margin-left: -62px;
+    margin-top: 20px;
 }
 
 .UserContent .book-covers {
@@ -25,12 +26,9 @@
     position: relative;
     margin-bottom: 50px;
 }
-
 .UserContent h2, .UserContent p {
     margin-left: 50px;
-
 }
-
 .UserContent .book-covers a > img {
     width: 220px;
     height: 280px;
@@ -38,14 +36,12 @@
     margin: 20px;
     transition: all .3s ease-in-out;
 }
-
 .UserContent .book-covers a > img:hover{
     cursor: pointer;
     box-shadow: 10px 10px 10px 10px lightgrey;
     transition: all .3s ease-in-out;
 }
-
 .UserContent .book-covers button:hover {
     cursor: pointer;
+    opacity: 1;
 }
-

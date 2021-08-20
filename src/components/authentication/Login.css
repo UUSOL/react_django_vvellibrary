@@ -3,7 +3,6 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 24px;
 }
-
 .Login {
     display: flex;
     flex-direction: column;
@@ -13,7 +12,6 @@
     position: relative;
     z-index: 1;
 }
-
 .field {
     display: flex;
     width: 515px;
@@ -26,7 +24,6 @@
     font-size: 24px;
 	font-family: 'Cormorant Garamond', serif;
 }
-
 .Login .login-buttons {
     display: flex;
     justify-content: center;
@@ -44,7 +41,6 @@
 	border: 0;
 	transition-duration: 0.5s;
 }
-
 .Login .login-buttons button:hover {
 	transition-duration: 0.5s;
 	cursor: pointer;
@@ -59,8 +55,6 @@
 .Login .sign-up-link:hover {
     color: skyblue;
 }
-
-
 @media only screen and (max-width: 700px){
     .Login {
         justify-content: center;
