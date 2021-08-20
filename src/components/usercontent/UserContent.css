@@ -23,6 +23,12 @@
     flex-wrap: wrap;
     margin: 50px;
     position: relative;
+    margin-bottom: 50px;
+}
+
+.UserContent h2, .UserContent p {
+    margin-left: 50px;
+
 }
 
 .UserContent .book-covers a > img {
@@ -35,7 +41,7 @@
 
 .UserContent .book-covers a > img:hover{
     cursor: pointer;
-    box-shadow: 10px 10px 10px 10px lightcyan;
+    box-shadow: 10px 10px 10px 10px lightgrey;
     transition: all .3s ease-in-out;
 }
 

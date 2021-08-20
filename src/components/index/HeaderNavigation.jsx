@@ -19,7 +19,7 @@ function HeaderNavigation() {
             <NavLink onClick={(token['vvelToken']) ? test : null} 
                     to={ (token['vvelToken']) ? '/' : '/login'} activeClassName="SActivated">
                     { (token['vvelToken']) ? 'Выйти' : 'Войти'}
-            </NavLink> 
+            </NavLink>
         </div>   
     );
 }

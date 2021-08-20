@@ -18,7 +18,7 @@ function Login() {
 
     useEffect(() => {
         if(token['vvelToken']) {
-            history.goBack()
+            history.goBack();
         }
     }, [token]);
 

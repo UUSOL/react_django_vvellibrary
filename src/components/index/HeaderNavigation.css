@@ -23,29 +23,20 @@
     color: orange;  
 }
 
-.logo {
-    position: absolute;
-    left: 30px;
-    top:30px;
-}
 @media only screen and (max-width: 940px){
     .HeaderNavigation {
         display: flex;
         flex-direction: column;
         height: 0;
-        overflow: show;  
+        overflow: show;
+        padding-right: 0;
+        margin-right: 0;  
     }
 }
 
 @media only screen and (max-width: 700px){
-    .HeaderNavigation {
-        flex-direction: row;
-        height: auto;
-        justify-content: space-around;
-        align-items: center;
-       
-    } 
-    .HeaderNavigation > input {
-      display: none;
+    .HeaderNavigation a {
+        padding-right: 5px;
+        margin-right: 5px;
     }
 }

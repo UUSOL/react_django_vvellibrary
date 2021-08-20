@@ -19,12 +19,13 @@
     width: auto;
     flex-direction: column;
     padding: 0 30px;
+    font-family: 'Roboto', sans-serif;
 }
 
-.Book .book-info > h3 {
+.Book .book-info h3 {
    margin: 0;
-   font-family: Roboto;
-   font-size: 40px;
+   font-family: 'Roboto', sans-serif;
+   font-size: 45px;
 }
 
 /*buttons*/

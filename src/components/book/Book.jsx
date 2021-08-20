@@ -16,6 +16,11 @@ function Book(props) {
     let [loading, setLoading] = useState(true);
 
     const addBookToUserContent = () => {
+        if (!token['vvelToken']) {
+            history.push('/login')
+            return; 
+        }
+
         fetch('https://vvelonlinelibrary.herokuapp.com/api/choice/', {
             'method': 'POST',
             headers: {
@@ -33,6 +38,7 @@ function Book(props) {
         })
         .then(response => {
             console.log(response)
+            history.push('/choice');
             //setBook(response)
         })
         .catch(e => {
@@ -100,7 +106,7 @@ function Book(props) {
 					<div className="buttons">
 						<button onClick={() => setMode('read')}>Читать онлайн</button>
 						<a href={book[0].url_to_download} target='_blank' download>Скачать</a>				
-						<button onClick={addBookToUserContent}>Добавить в мою библиотеку</button>
+						<button onClick={addBookToUserContent}>Добавить в мои закладки</button>
 					</div>
 				</div>
                 </React.Fragment>

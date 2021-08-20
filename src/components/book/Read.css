@@ -19,3 +19,7 @@
     background-color: darkorange;
     transition-duration: 0.3s;
 }
+
+iframe {
+    background-color: transparent;
+}
